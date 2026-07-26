@@ -1,0 +1,106 @@
+Clustering Method: Theme-based Grouping (HDBSCAN Fallback)
+Reason: HDBSCAN noise was 68.0% (> 40%) and clusters were 2 (< 6)
+Total Clusters/Groups: 29
+
+Group Counts:
+  delivery_ops_positive: 258 reviews
+  trust_quality_negative: 134 reviews
+  trust_quality_positive: 133 reviews
+  other_positive: 127 reviews
+  delivery_ops_negative: 116 reviews
+  other_neutral: 73 reviews
+  habit_loop_positive: 65 reviews
+  price_value_negative: 56 reviews
+  low_signal: 55 reviews
+  emotional_positive: 43 reviews
+  price_value_positive: 39 reviews
+  ux_friction_negative: 28 reviews
+  ux_friction_positive: 23 reviews
+  other_negative: 21 reviews
+  awareness_gap_positive: 19 reviews
+  delivery_ops_neutral: 16 reviews
+  other_small_groups: 15 reviews
+  price_value_neutral: 14 reviews
+  mental_model_positive: 12 reviews
+  assortment_gap_positive: 11 reviews
+  assortment_gap_negative: 8 reviews
+  habit_loop_neutral: 8 reviews
+  ux_friction_neutral: 7 reviews
+  price_value_mixed: 6 reviews
+  trust_quality_neutral: 6 reviews
+  delivery_ops_mixed: 5 reviews
+  awareness_gap_neutral: 4 reviews
+  assortment_gap_neutral: 4 reviews
+  trust_information_neutral: 4 reviews
+
+==================================================
+Cluster-Label Convergence Check (Cross-Tabulation)
+==================================================
+Cluster: assortment_gap_negative
+  - Theme 'assortment_gap': 8 reviews
+Cluster: assortment_gap_neutral
+  - Theme 'assortment_gap': 4 reviews
+Cluster: assortment_gap_positive
+  - Theme 'assortment_gap': 11 reviews
+Cluster: awareness_gap_neutral
+  - Theme 'awareness_gap': 4 reviews
+Cluster: awareness_gap_positive
+  - Theme 'awareness_gap': 19 reviews
+Cluster: delivery_ops_mixed
+  - Theme 'delivery_ops': 5 reviews
+Cluster: delivery_ops_negative
+  - Theme 'delivery_ops': 116 reviews
+Cluster: delivery_ops_neutral
+  - Theme 'delivery_ops': 16 reviews
+Cluster: delivery_ops_positive
+  - Theme 'delivery_ops': 258 reviews
+Cluster: emotional_positive
+  - Theme 'emotional': 43 reviews
+Cluster: habit_loop_neutral
+  - Theme 'habit_loop': 8 reviews
+Cluster: habit_loop_positive
+  - Theme 'habit_loop': 65 reviews
+Cluster: low_signal
+  - Theme 'other': 53 reviews
+  - Theme 'trust_quality': 1 reviews
+  - Theme 'delivery_ops': 1 reviews
+Cluster: mental_model_positive
+  - Theme 'mental_model': 12 reviews
+Cluster: other_negative
+  - Theme 'other': 21 reviews
+Cluster: other_neutral
+  - Theme 'other': 73 reviews
+Cluster: other_positive
+  - Theme 'other': 127 reviews
+Cluster: other_small_groups
+  - Theme 'trust_information': 3 reviews
+  - Theme 'emotional': 2 reviews
+  - Theme 'trust_quality': 2 reviews
+  - Theme 'mental_model': 2 reviews
+  - Theme 'other': 2 reviews
+  - Theme 'ux_friction': 1 reviews
+  - Theme 'assortment_gap': 1 reviews
+  - Theme 'awareness_gap': 1 reviews
+  - Theme 'habit_loop': 1 reviews
+Cluster: price_value_mixed
+  - Theme 'price_value': 6 reviews
+Cluster: price_value_negative
+  - Theme 'price_value': 56 reviews
+Cluster: price_value_neutral
+  - Theme 'price_value': 14 reviews
+Cluster: price_value_positive
+  - Theme 'price_value': 39 reviews
+Cluster: trust_information_neutral
+  - Theme 'trust_information': 4 reviews
+Cluster: trust_quality_negative
+  - Theme 'trust_quality': 134 reviews
+Cluster: trust_quality_neutral
+  - Theme 'trust_quality': 6 reviews
+Cluster: trust_quality_positive
+  - Theme 'trust_quality': 133 reviews
+Cluster: ux_friction_negative
+  - Theme 'ux_friction': 28 reviews
+Cluster: ux_friction_neutral
+  - Theme 'ux_friction': 7 reviews
+Cluster: ux_friction_positive
+  - Theme 'ux_friction': 23 reviews

@@ -1,0 +1,148 @@
+LENS Verification & Validation Report
+=====================================
+
+1. HUMAN-LLM AGREEMENT AUDIT RESULTS
+------------------------------------
+Overall Agreement Score      : 56.0% (target >=85%)
+Random Draw Agreement Score  : 57.1% (unbiased estimate)
+Stratified Draw Agreement    : 53.3% (diagnostic power)
+
+CONFUSION TABLE:
+Rows: Expert Auditor (Ground Truth) | Columns: Original LLM Classifier
+Expert / LLM             | habit_lo | awarenes | mental_m | trust_qu | trust_in | price_va | ux_frict | assortme | delivery | emotiona | other    
+--------------------------------------------------------------------------------------------------------------------------------------------------
+habit_loop               |        0 |        0 |        1 |        1 |        0 |        0 |        0 |        0 |        2 |        0 |        0 
+awareness_gap            |        0 |        0 |        0 |        0 |        0 |        0 |        0 |        0 |        0 |        0 |        0 
+mental_model             |        0 |        0 |        0 |        0 |        0 |        0 |        0 |        0 |        0 |        0 |        1 
+trust_quality            |        0 |        0 |        0 |        8 |        0 |        0 |        0 |        1 |        3 |        0 |        0 
+trust_information        |        0 |        0 |        0 |        1 |        0 |        0 |        0 |        0 |        0 |        0 |        0 
+price_value              |        0 |        0 |        0 |        0 |        0 |        4 |        0 |        0 |        0 |        0 |        0 
+ux_friction              |        0 |        0 |        0 |        0 |        0 |        0 |        1 |        0 |        1 |        0 |        0 
+assortment_gap           |        0 |        0 |        0 |        1 |        0 |        0 |        0 |        1 |        0 |        0 |        0 
+delivery_ops             |        1 |        0 |        0 |        1 |        0 |        0 |        0 |        0 |        7 |        0 |        1 
+emotional                |        0 |        1 |        0 |        1 |        0 |        0 |        0 |        0 |        0 |        1 |        1 
+other                    |        0 |        0 |        0 |        1 |        1 |        1 |        0 |        0 |        1 |        0 |        6 
+
+2. CORPUS BIAS DISCLOSURE & SKEW METRICS
+----------------------------------------
+Total Ingested Reviews : 1310
+1. Source Skew         : App-store dominance: 987 / 1310 (75.3%)
+2. Rating Polarization : High ratings skewed: 5-Star (777) vs 1-Star (178), thin middle.
+3. Rating Completeness : Missing ratings count: 277 (all 277 YouTube comments lack ratings)
+4. Survivorship Bias   : Feedback originates exclusively from active, transacting app users.
+5. Social Thinness     : Reddit (1) and Trustpilot (4) sources are anecdote-only.
+
+3. TRIANGULATION SUMMARY
+------------------------
+Card: 'Users Appreciate the Wide Range of Products and Quick Delivery'
+  - Theme       : awareness_gap
+  - Confidence  : LOW
+  - Sources     : LENS Reviews
+  - Validation  : [VALIDATE] User interviews to understand the specific product categories and features that drive customer satisfaction and loyalty, and to identify opportunities for further expansion and improvement.
+
+Card: 'Users experience significant friction due to app limitations and poor user experience'
+  - Theme       : ux_friction
+  - Confidence  : MEDIUM
+  - Sources     : LENS Reviews, n=42 Survey
+  - Validation  : [VALIDATE] User interviews with international users and frequent business tourists to confirm the app's limitations and gather feedback on potential solutions.
+
+Card: 'Lack of Trust in Quality and Refund Process'
+  - Theme       : trust_quality
+  - Confidence  : MEDIUM
+  - Sources     : LENS Reviews
+  - Validation  : [VALIDATE] User interviews to understand the specific pain points in the refund process and to gather suggestions for improvement.
+
+Card: 'Users Trust Blinkit for Fast and Reliable Grocery Delivery'
+  - Theme       : trust_quality
+  - Confidence  : MEDIUM
+  - Sources     : LENS Reviews
+  - Validation  : [VALIDATE] User interviews to confirm the importance of fast delivery times and product quality in the decision to use Blinkit, as well as to gather feedback on potential areas for improvement.
+
+Card: 'Users Appreciate Blinkit's Convenience and Ease of Use, But Have Suggestions for Improvement'
+  - Theme       : ux_friction
+  - Confidence  : MEDIUM
+  - Sources     : LENS Reviews, n=42 Survey
+  - Validation  : [VALIDATE] User interviews or surveys can help validate the importance of the suggested features, such as shopping lists and AI-powered product recommendations, and gather more feedback on how to improve the overall user experience.
+
+Card: 'Users Value Blinkit for Convenience and Time-Saving in Grocery Shopping'
+  - Theme       : mental_model
+  - Confidence  : LOW
+  - Sources     : LENS Reviews
+  - Validation  : [VALIDATE] User interviews to confirm the importance of convenience and time-saving in grocery shopping, and to gather more insights on the types of products users would like to see added to the platform.
+
+Card: 'Convenience and Speed Drive Habit Formation in Quick-Commerce'
+  - Theme       : habit_loop
+  - Confidence  : HIGH
+  - Sources     : LENS Reviews, n=42 Survey
+  - Validation  : [ASSUMPTION] User interviews to understand the specific pain points and motivations that drive users to form habits around the quick-commerce platform, and to explore opportunities for expanding product offerings and improving the user experience.
+
+Card: 'Users Perceive High Delivery Charges and Lack of Discounts as Unfair'
+  - Theme       : price_value
+  - Confidence  : HIGH
+  - Sources     : LENS Reviews, n=42 Survey
+  - Validation  : [ASSUMPTION] User interviews to understand the threshold for acceptable delivery charges and the types of discounts that would increase customer satisfaction
+
+Card: 'Users Appreciate Blinkit's Convenience, Reliability, and Social Responsibility'
+  - Theme       : emotional
+  - Confidence  : LOW
+  - Sources     : LENS Reviews
+  - Validation  : [VALIDATE] User interviews to confirm the importance of social responsibility initiatives and to gather more feedback on the app's user experience and product offerings.
+
+Card: 'Customers Value Blinkit's Quick Delivery and Competitive Pricing'
+  - Theme       : price_value
+  - Confidence  : HIGH
+  - Sources     : LENS Reviews, n=42 Survey
+  - Validation  : [ASSUMPTION] Conduct user interviews to understand the threshold for delivery charges and the perceived value of quick delivery versus price competitiveness.
+
+Card: 'Users Experience Friction with Current Features and Suggest Improvements'
+  - Theme       : ux_friction
+  - Confidence  : MEDIUM
+  - Sources     : LENS Reviews, n=42 Survey
+  - Validation  : [VALIDATE] User interviews to confirm the importance of the suggested features and improvements, and to gather more information about the user experience and pain points.
+
+Card: 'Users Perceive Quick Commerce as Convenient but Expensive'
+  - Theme       : price_value
+  - Confidence  : HIGH
+  - Sources     : LENS Reviews, n=42 Survey
+  - Validation  : [ASSUMPTION] User interviews or surveys to understand the threshold of price sensitivity among customers and to explore potential pricing models that could balance profitability with customer affordability.
+
+Card: 'Users Desire a Wider Assortment of Products'
+  - Theme       : assortment_gap
+  - Confidence  : LOW
+  - Sources     : LENS Reviews
+  - Validation  : [VALIDATE] Conduct user interviews to understand the specific product categories and brands that are most in demand and to gauge the willingness of customers to pay a premium for convenience and a wider product range.
+
+Card: 'Users are frustrated with the limited product assortment and frequent stockouts on the platform'
+  - Theme       : assortment_gap
+  - Confidence  : LOW
+  - Sources     : LENS Reviews
+  - Validation  : [VALIDATE] User interviews and surveys to understand the specific product categories and items that users are looking for but cannot find on the platform, as well as to gauge the impact of stockouts on customer loyalty and retention.
+
+Card: 'Users Perceive Blinkit as Convenient but Overpriced'
+  - Theme       : price_value
+  - Confidence  : HIGH
+  - Sources     : LENS Reviews, n=42 Survey
+  - Validation  : [ASSUMPTION] User interviews to understand the threshold for price sensitivity among Blinkit's target audience and to explore potential pricing models that could balance revenue goals with customer affordability expectations.
+
+Card: 'Users Prefer Local Markets but Consider Online Shopping as a Convenient Alternative'
+  - Theme       : habit_loop
+  - Confidence  : HIGH
+  - Sources     : LENS Reviews, n=42 Survey
+  - Validation  : [ASSUMPTION] User interviews or surveys to understand the specific pain points and motivations of customers who prefer local markets, and to identify opportunities for the online platform to improve its services and better meet customer needs.
+
+Card: 'Users Expect High Quality and Flexible Payment Options'
+  - Theme       : trust_quality
+  - Confidence  : MEDIUM
+  - Sources     : LENS Reviews
+  - Validation  : [VALIDATE] User interviews or surveys to confirm the importance of quality checks, refund systems, and flexible payment options for customer satisfaction and retention.
+
+4. PRIMARY RESEARCH / INTERVIEW GAP ROUTING
+-------------------------------------------
+Gap ID: Q5
+  - Description: What information do users need before trying a new category?
+  - Proposed Probing Question: 'Before buying face serums, pet foods, or diapers, what details or specs would make you order on Blinkit instead of DMart/Amazon?'
+
+Gap ID: Q7
+  - Description: Which user segments are more likely to experiment?
+  - Proposed Probing Question: 'Have you or anyone you know bought non-grocery items like Pujasamagri or stationery on quick commerce? What prompted that first trial?'
+

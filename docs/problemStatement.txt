@@ -1,0 +1,85 @@
+# Problem Statement
+
+## Problem Statement: AI-Powered Category-Discovery Insight Engine (Blinkit Use Case)
+
+You are a Product Manager on the Growth Team at Blinkit. Quick-commerce platforms have become part of users' weekly routines, but shopping behavior turns highly repetitive — users buy the same set of products and rarely explore new categories. Blinkit's strategic goal is to increase the percentage of Monthly Active Customers who purchase from at least one new category every month (e.g., a groceries buyer starting to buy pet supplies, a snacks buyer trying personal care).
+
+Before proposing any solution, you are tasked with building an AI-powered discovery engine ("LENS") that analyzes real user feedback at scale to explain **why users repeat categories and what would make them explore new ones.** The system combines a real-world dataset of user reviews with a Large Language Model (LLM) to surface structured, evidence-backed, validated insights — not a generic review summary.
+
+## Objective
+
+Design and implement a system that:
+
+* Ingests real user feedback about Blinkit from multiple public sources (app stores, YouTube, forums)
+* Uses an LLM to classify every item against a fixed theme schema and extract barriers, habits, and unmet needs
+* Clusters and ranks the findings into prioritized, segment-aware insights
+* Validates insight quality and assigns a confidence level to each
+* Displays clear, decision-ready insights that answer the 8 core research questions
+
+## System Workflow
+
+### 1. Data Ingestion
+* Load and preprocess the Blinkit review dataset (`Blinkit_Reviews.xlsx`): 1,310 unique reviews across 5 sources — Google Play (500), App Store (487), YouTube comments (277), MouthShut (41), Trustpilot (4).
+* Clean and **deduplicate** (raw file is ~74% duplicated: 5,000 rows → 1,310 unique — dedup is a demonstrable pipeline step).
+* Detect language and translate Hinglish → English.
+* Extract relevant fields: review text, source, rating, and derived fields (theme, sentiment, segment).
+
+### 2. Analysis Input (per-item classification)
+* Pass each review into an LLM with a fixed **context schema**, extracting:
+   * Primary + secondary theme (from a 10-code taxonomy: habit_loop, awareness_gap, mental_model, trust_quality, trust_information, price_value, ux_friction, assortment_gap, delivery_ops, emotional)
+   * Sentiment and intent
+   * Categories mentioned (grocery, snacks, household, beauty, pet, baby, personal care, electronics)
+   * Whether the user explored a new category, and the barrier if they didn't
+   * Information needed before trying a new category
+   * JTBD statement and user-segment signal (young professional, parent, student, pet owner, etc.)
+   * An exact `evidence_span` quote + a confidence score (anti-hallucination anchor)
+
+### 3. Integration Layer (structure & cluster)
+* Generate embeddings for each review and store in a vector database.
+* Cluster reviews semantically (HDBSCAN) and cross-check clusters against the LLM theme labels.
+* Aggregate by theme, sentiment, segment, and source to prepare structured input for insight synthesis.
+
+### 4. Insight Engine
+* Use the LLM to, per cluster:
+   * Generate an insight card (finding, "so-what" for new-category adoption, 3 real quotes with URLs)
+   * Identify affected user segments and any counter-evidence
+   * Rank insights by **Opportunity = Frequency × Severity × Addressability × Strategic Fit**
+   * Assign confidence (high/medium/low) and a validation hook for primary research
+
+### 5. Validation Layer
+* Hand-label 50 random reviews and report LLM–human agreement % (target ≥85%).
+* Triangulate each insight across ≥2 source types.
+* Disclose corpus biases (rating polarization, app-store source skew, survivorship).
+* Mark every assumption and flag where more validation is required.
+
+### 6. Output Display
+* Present top insights in a user-friendly dashboard (public link = the "test the workflow" deliverable):
+   * Insight title (states the finding)
+   * Which research question it answers (Q1–Q8)
+   * Frequency and affected segments
+   * Confidence level
+   * Representative quotes with source URLs
+   * "So-what" implication for increasing new-category adoption
+
+## Dataset
+
+* Primary: `Blinkit_Reviews.xlsx` — 1,310 unique reviews, 5 sources, schema `S.No | Source/URL | Reviews | Rating`
+* Supporting: `Quick-Commerce_Insights_Survey.xlsx` — 20 structured survey responses (for triangulation)
+
+## The 8 Research Questions the Engine Must Answer
+
+1. Why do users repeatedly buy from the same categories?
+2. What prevents users from exploring new categories?
+3. How do users discover products today?
+4. What role do habits play in shopping behavior?
+5. What information do users need before trying a new category?
+6. What frustrations emerge repeatedly?
+7. Which user segments are more likely to experiment?
+8. What unmet needs emerge consistently across discussions?
+
+## Deliverables
+
+* A working, demonstrable workflow (public link to test it)
+* Labeled dataset + ranked insight cards (with quotes, URLs, confidence)
+* A validation report (agreement %, triangulation, bias disclosure)
+* A 1-slider for the deck showing how the engine gathers data, identifies themes, generates insights, and validates quality

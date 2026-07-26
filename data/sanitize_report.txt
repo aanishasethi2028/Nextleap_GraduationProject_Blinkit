@@ -1,0 +1,26 @@
+Sanitization Report
+===================
+Raw rows in file             : 1327
+After removing blanks        : 1327
+Duplicates removed           : 17
+Unique reviews (final)       : 1310
+Low-signal (emoji/too short) : 55  (kept, flagged is_low_signal=True)
+Usable rich reviews          : 1255
+
+Source breakdown:
+source_type
+playstore     500
+appstore      487
+youtube       277
+mouthshut      41
+trustpilot      4
+reddit          1
+
+Rating distribution:
+Rating
+5.0    777
+NaN    277
+1.0    178
+3.0     32
+4.0     31
+2.0     15
