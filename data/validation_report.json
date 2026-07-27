@@ -152,5 +152,160 @@
     "rating_polarization_5_star": 777,
     "rating_polarization_1_star": 178,
     "missing_ratings_pct": 21.14503816793893
+  },
+  "before_audit": {
+    "overall_agreement_pct": 56.0,
+    "random_agreement_pct": 54.3,
+    "stratified_agreement_pct": 60.0
+  },
+  "after_audit": {
+    "overall_agreement_pct": 38.0,
+    "random_agreement_pct": 31.428571428571427,
+    "stratified_agreement_pct": 53.333333333333336
+  },
+  "confusion_matrix_after": {
+    "habit_loop": {
+      "habit_loop": 0,
+      "awareness_gap": 0,
+      "mental_model": 1,
+      "trust_quality": 0,
+      "trust_information": 0,
+      "price_value": 0,
+      "ux_friction": 0,
+      "assortment_gap": 0,
+      "delivery_ops": 0,
+      "emotional": 3,
+      "other": 0
+    },
+    "awareness_gap": {
+      "habit_loop": 0,
+      "awareness_gap": 0,
+      "mental_model": 0,
+      "trust_quality": 0,
+      "trust_information": 0,
+      "price_value": 0,
+      "ux_friction": 0,
+      "assortment_gap": 0,
+      "delivery_ops": 0,
+      "emotional": 0,
+      "other": 0
+    },
+    "mental_model": {
+      "habit_loop": 0,
+      "awareness_gap": 0,
+      "mental_model": 0,
+      "trust_quality": 0,
+      "trust_information": 0,
+      "price_value": 0,
+      "ux_friction": 0,
+      "assortment_gap": 0,
+      "delivery_ops": 0,
+      "emotional": 0,
+      "other": 1
+    },
+    "trust_quality": {
+      "habit_loop": 0,
+      "awareness_gap": 0,
+      "mental_model": 0,
+      "trust_quality": 5,
+      "trust_information": 0,
+      "price_value": 1,
+      "ux_friction": 1,
+      "assortment_gap": 0,
+      "delivery_ops": 2,
+      "emotional": 2,
+      "other": 1
+    },
+    "trust_information": {
+      "habit_loop": 0,
+      "awareness_gap": 0,
+      "mental_model": 0,
+      "trust_quality": 0,
+      "trust_information": 0,
+      "price_value": 0,
+      "ux_friction": 1,
+      "assortment_gap": 0,
+      "delivery_ops": 0,
+      "emotional": 0,
+      "other": 0
+    },
+    "price_value": {
+      "habit_loop": 0,
+      "awareness_gap": 0,
+      "mental_model": 0,
+      "trust_quality": 0,
+      "trust_information": 0,
+      "price_value": 3,
+      "ux_friction": 0,
+      "assortment_gap": 0,
+      "delivery_ops": 0,
+      "emotional": 1,
+      "other": 0
+    },
+    "ux_friction": {
+      "habit_loop": 0,
+      "awareness_gap": 0,
+      "mental_model": 0,
+      "trust_quality": 0,
+      "trust_information": 0,
+      "price_value": 0,
+      "ux_friction": 1,
+      "assortment_gap": 0,
+      "delivery_ops": 0,
+      "emotional": 0,
+      "other": 1
+    },
+    "assortment_gap": {
+      "habit_loop": 0,
+      "awareness_gap": 0,
+      "mental_model": 0,
+      "trust_quality": 0,
+      "trust_information": 0,
+      "price_value": 1,
+      "ux_friction": 0,
+      "assortment_gap": 1,
+      "delivery_ops": 0,
+      "emotional": 0,
+      "other": 0
+    },
+    "delivery_ops": {
+      "habit_loop": 0,
+      "awareness_gap": 0,
+      "mental_model": 0,
+      "trust_quality": 1,
+      "trust_information": 0,
+      "price_value": 0,
+      "ux_friction": 1,
+      "assortment_gap": 0,
+      "delivery_ops": 2,
+      "emotional": 4,
+      "other": 2
+    },
+    "emotional": {
+      "habit_loop": 1,
+      "awareness_gap": 0,
+      "mental_model": 1,
+      "trust_quality": 0,
+      "trust_information": 0,
+      "price_value": 0,
+      "ux_friction": 0,
+      "assortment_gap": 0,
+      "delivery_ops": 0,
+      "emotional": 0,
+      "other": 2
+    },
+    "other": {
+      "habit_loop": 0,
+      "awareness_gap": 0,
+      "mental_model": 0,
+      "trust_quality": 0,
+      "trust_information": 0,
+      "price_value": 1,
+      "ux_friction": 0,
+      "assortment_gap": 0,
+      "delivery_ops": 1,
+      "emotional": 1,
+      "other": 7
+    }
   }
 }

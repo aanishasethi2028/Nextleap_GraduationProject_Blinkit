@@ -45,37 +45,84 @@ def classify_batch_sharpened(reviews_chunk):
     msg = [{"role": "system", "content": SYSTEM_PROMPT},
            {"role": "user", "content": f"Classify these {len(reviews_chunk)} reviews:\n\n{numbered}"}]
     
+    cerebras_key = os.getenv("CEREBRAS_API_KEY")
+    gemini_key = os.getenv("GEMINI_API_KEY")
     groq_key = os.getenv("GROQ_API_KEY")
-    if not groq_key:
-         raise ValueError("GROQ_API_KEY not found.")
-
-    client = OpenAI(api_key=groq_key.strip(), base_url="https://api.groq.com/openai/v1")
     
-    for attempt in range(5):
-        try:
+    # 1. Try Cerebras Llama 3.3 70B
+    if cerebras_key:
+        client = OpenAI(api_key=cerebras_key.strip(), base_url="https://api.cerebras.ai/v1")
+        for model_name in ["llama3.3-70b", "llama-3.3-70b", "llama3.1-70b"]:
             try:
                 resp = client.chat.completions.create(
-                    model="llama-3.3-70b-versatile",
+                    model=model_name,
                     messages=msg,
                     temperature=0,
                     response_format={"type": "json_object"}
                 )
-            except Exception as e_70b:
-                if "rate_limit" in str(e_70b).lower() or "429" in str(e_70b).lower():
-                    print("Groq 70B rate limit hit. Falling back to 8B model...")
-                    resp = client.chat.completions.create(
-                        model="llama-3.1-8b-instant",
-                        messages=msg,
-                        temperature=0,
-                        response_format={"type": "json_object"}
-                    )
+                raw = resp.choices[0].message.content.strip()
+                raw_cleaned = re.sub(r"^```(?:json)?|```$", "", raw).strip()
+                data = json.loads(raw_cleaned)
+                results = data.get("results", [])
+                out = [None] * len(reviews_chunk)
+                for j, item in enumerate(results):
+                    try:
+                        idx = int(item.get("n", j + 1)) - 1
+                    except Exception:
+                        idx = j
+                    if 0 <= idx < len(reviews_chunk):
+                        out[idx] = item
+                return out
+            except Exception as e_cer:
+                print(f"Cerebras model {model_name} failed: {str(e_cer)[:120]}. Trying next fallback...")
+            
+    # 2. Try Gemini 2.0 Flash (with 429 backoff retry)
+    if gemini_key:
+        client = OpenAI(api_key=gemini_key.strip(), base_url="https://generativelanguage.googleapis.com/v1beta/openai/")
+        for attempt in range(4):
+            try:
+                resp = client.chat.completions.create(
+                    model="gemini-2.0-flash",
+                    messages=msg,
+                    temperature=0,
+                    response_format={"type": "json_object"}
+                )
+                raw = resp.choices[0].message.content.strip()
+                raw_cleaned = re.sub(r"^```(?:json)?|```$", "", raw).strip()
+                data = json.loads(raw_cleaned)
+                results = data.get("results", [])
+                out = [None] * len(reviews_chunk)
+                for j, item in enumerate(results):
+                    try:
+                        idx = int(item.get("n", j + 1)) - 1
+                    except Exception:
+                        idx = j
+                    if 0 <= idx < len(reviews_chunk):
+                        out[idx] = item
+                return out
+            except Exception as e_gem:
+                if "429" in str(e_gem):
+                    wait_time = 35 + attempt * 10
+                    print(f"Gemini rate limit hit. Sleeping {wait_time}s before retry {attempt+1}/4...")
+                    time.sleep(wait_time)
                 else:
-                    raise e_70b
+                    print(f"Gemini re-audit classification failed: {e_gem}. Trying Groq fallback...")
+                    break
+            
+    # 3. Try Groq Llama 3.3 70B
+    if groq_key:
+        client = OpenAI(api_key=groq_key.strip(), base_url="https://api.groq.com/openai/v1")
+        try:
+            resp = client.chat.completions.create(
+                model="llama-3.3-70b-versatile",
+                messages=msg,
+                temperature=0,
+                response_format={"type": "json_object"}
+            )
             raw = resp.choices[0].message.content.strip()
             raw_cleaned = re.sub(r"^```(?:json)?|```$", "", raw).strip()
             data = json.loads(raw_cleaned)
-            results = data.get("results")
-            
+            results = data.get("results", [])
             out = [None] * len(reviews_chunk)
             for j, item in enumerate(results):
                 try:
@@ -85,9 +132,31 @@ def classify_batch_sharpened(reviews_chunk):
                 if 0 <= idx < len(reviews_chunk):
                     out[idx] = item
             return out
-        except Exception as e:
-            print(f"Retry {attempt+1}/5 after 3s (error: {str(e)[:70]})")
-            time.sleep(3)
+        except Exception as e_70b:
+            print(f"Groq 70B re-audit classification failed: {e_70b}. Trying Groq 8B fallback...")
+            try:
+                resp = client.chat.completions.create(
+                    model="llama-3.1-8b-instant",
+                    messages=msg,
+                    temperature=0,
+                    response_format={"type": "json_object"}
+                )
+                raw = resp.choices[0].message.content.strip()
+                raw_cleaned = re.sub(r"^```(?:json)?|```$", "", raw).strip()
+                data = json.loads(raw_cleaned)
+                results = data.get("results", [])
+                out = [None] * len(reviews_chunk)
+                for j, item in enumerate(results):
+                    try:
+                        idx = int(item.get("n", j + 1)) - 1
+                    except Exception:
+                        idx = j
+                    if 0 <= idx < len(reviews_chunk):
+                        out[idx] = item
+                return out
+            except Exception as e_8b:
+                print(f"Groq 8B re-audit classification failed: {e_8b}")
+                
     return [None] * len(reviews_chunk)
 
 def main():
@@ -102,7 +171,7 @@ def main():
     df_audit = pd.read_excel(audit_path)
     records = df_audit.to_dict("records")
     
-    print("Re-classifying 50 audit reviews using the sharpened prompt on llama-3.1-8b-instant...")
+    print("Re-classifying 50 audit reviews using the sharpened prompt on Cerebras Llama 3.3 70B...")
     
     new_results = []
     # Process in batches of 10
