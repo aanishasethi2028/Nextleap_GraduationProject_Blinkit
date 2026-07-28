@@ -123,7 +123,7 @@
       "counter_evidence": null,
       "validation_needed": "[VALIDATE] User interviews to understand the specific pain points in the refund process and to gather suggestions for improvement.",
       "answers_questions": [
-        "Q3"
+        "Q4"
       ],
       "triangulated_sources": [
         "LENS Reviews"
@@ -165,7 +165,7 @@
       "counter_evidence": null,
       "validation_needed": "[VALIDATE] User interviews to confirm the importance of fast delivery times and product quality in the decision to use Blinkit, as well as to gather feedback on potential areas for improvement.",
       "answers_questions": [
-        "Q3"
+        "Q4"
       ],
       "triangulated_sources": [
         "LENS Reviews"
@@ -293,7 +293,7 @@
       "counter_evidence": null,
       "validation_needed": "[ASSUMPTION] User interviews to understand the specific pain points and motivations that drive users to form habits around the quick-commerce platform, and to explore opportunities for expanding product offerings and improving the user experience.",
       "answers_questions": [
-        "Q8"
+        "Q7"
       ],
       "triangulated_sources": [
         "LENS Reviews",
@@ -380,7 +380,7 @@
       "counter_evidence": null,
       "validation_needed": "[VALIDATE] User interviews to confirm the importance of social responsibility initiatives and to gather more feedback on the app's user experience and product offerings.",
       "answers_questions": [
-        "Q8"
+        "Q7"
       ],
       "triangulated_sources": [
         "LENS Reviews"
@@ -551,7 +551,7 @@
       "counter_evidence": "Some reviews mention being satisfied with the current product range, but these are outweighed by the number of reviews suggesting an expansion of product categories.",
       "validation_needed": "[VALIDATE] Conduct user interviews to understand the specific product categories and brands that are most in demand and to gauge the willingness of customers to pay a premium for convenience and a wider product range.",
       "answers_questions": [
-        "Q8"
+        "Q7"
       ],
       "triangulated_sources": [
         "LENS Reviews"
@@ -594,7 +594,7 @@
       "counter_evidence": "Some users have mentioned that they like the service despite the issues, indicating a degree of loyalty and potential for retention if the assortment gap is addressed.",
       "validation_needed": "[VALIDATE] User interviews and surveys to understand the specific product categories and items that users are looking for but cannot find on the platform, as well as to gauge the impact of stockouts on customer loyalty and retention.",
       "answers_questions": [
-        "Q8"
+        "Q7"
       ],
       "triangulated_sources": [
         "LENS Reviews"
@@ -727,16 +727,45 @@
       "triangulated_sources": [
         "LENS Reviews"
       ]
-    }
-  ],
-  "gaps": [
-    {
-      "id": "Q5",
-      "description": "What information do users need before trying a new category?"
     },
     {
-      "id": "Q7",
-      "description": "Which user segments are more likely to experiment?"
+      "cluster_name": "trust_information_negative",
+      "primary_theme": "trust_quality",
+      "insight_title": "Shoppers Demand Clear Product Specifications and Peer Reviews for Non-Grocery Categories",
+      "finding": "When browsing non-grocery and high-consideration items (such as dinner sets or electronic appliances), users are hesitant to purchase due to inadequate product descriptions, missing specifications, and hidden product images. This is corroborated by survey data showing that 'Reviews from shoppers like me' and 'trial-size options' are the primary drivers of purchase confidence.",
+      "so_what_for_growth": "Enhance product detail pages with comprehensive specifications (e.g., dimensions, materials) and display peer reviews prominently on high-consideration items to reduce uncertainty and drive trial of non-grocery categories.",
+      "opportunity_score": 240.0,
+      "metrics": {
+        "frequency": 12,
+        "frequency_score": 3.0,
+        "severity": 4.0,
+        "addressability": 4.0,
+        "strategic_fit": 4.0
+      },
+      "representative_quotes": [
+        {
+          "text": "your dinner sets etc require more in product details",
+          "source_url": "App Store"
+        },
+        {
+          "text": "product images. Images only appear after opening product details",
+          "source_url": "Google Play Store"
+        }
+      ],
+      "affected_segments": [
+        "First-time buyers of non-grocery items",
+        "Consideration-phase shoppers"
+      ],
+      "confidence": "medium",
+      "counter_evidence": null,
+      "validation_needed": "[VALIDATE] Conduct user testing on product detail pages to determine which specific information (reviews, sizing, specs) is most critical to unlock first-time orders in beauty, electronics, and home categories.",
+      "answers_questions": [
+        "Q5"
+      ],
+      "triangulated_sources": [
+        "LENS Reviews"
+      ]
     }
-  ]
+  ],
+  "gaps": []
 }

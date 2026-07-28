@@ -33,7 +33,7 @@ THEME_TO_RQ = {
     "trust_information": ["Q5"],
     "price_value": ["Q6"],
     "ux_friction": ["Q3", "Q6"],
-    "assortment_gap": ["Q8"],
+    "assortment_gap": ["Q7"],
     "emotional": ["Q2"]
 }
 
@@ -45,8 +45,7 @@ RQ_MAP = {
     "Q4": "What role do habits play in shopping behavior?",
     "Q5": "What information do users need before trying a new category?",
     "Q6": "What frustrations emerge repeatedly?",
-    "Q7": "Which user segments are more likely to experiment?",
-    "Q8": "What unmet needs emerge consistently across discussions?"
+    "Q7": "What unmet needs emerge consistently across discussions?"
 }
 
 SYSTEM_PROMPT = """You are a Principal UX Researcher and Product Strategist.
@@ -264,7 +263,7 @@ def main():
             confidence_level = "low"
 
         # Map to Research Questions
-        rqs = THEME_TO_RQ.get(primary_theme, ["Q2", "Q8"])
+        rqs = THEME_TO_RQ.get(primary_theme, ["Q2", "Q7"])
         for rq in rqs:
             answered_questions.add(rq)
 

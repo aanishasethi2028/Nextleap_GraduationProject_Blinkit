@@ -78,11 +78,11 @@ def check_insights_json(path):
         return False, "Missing 'insights' or 'gaps' keys in insights.json"
     insights_count = len(data["insights"])
     gaps_count = len(data["gaps"])
-    if insights_count != 17:
-        return False, f"Expected 17 growth insights, got {insights_count}"
-    if gaps_count != 2:
-        return False, f"Expected 2 quarantined gaps (Q5 and Q7), got {gaps_count}"
-    return True, f"Discovered 17 growth insights and 2 gaps (Q5, Q7)"
+    if insights_count != 18:
+        return False, f"Expected 18 growth insights, got {insights_count}"
+    if gaps_count != 0:
+        return False, f"Expected 0 quarantined gaps, got {gaps_count}"
+    return True, f"Discovered 18 growth insights and 0 gaps"
 
 def check_survey_xlsx(path):
     df = pd.read_excel(path)

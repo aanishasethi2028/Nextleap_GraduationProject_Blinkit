@@ -59,7 +59,7 @@ st.set_page_config(
 # Custom CSS styling for premium Blinkit Yellow (#FFE000) & Green (#0C831F) aesthetics
 st.markdown("""
 <style>
-    @import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap');
+    @import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800;900&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap');
     
     /* Main body typography */
     html, body, [class*="css"] {
@@ -68,9 +68,13 @@ st.markdown("""
     }
     h1, h2, h3, h4, h5, h6 {
         font-family: 'Outfit', sans-serif;
-        font-weight: 700;
+        font-weight: 800;
         color: #121212;
     }
+    h1 { font-size: 2.3rem !important; }
+    h2 { font-size: 1.8rem !important; }
+    h3 { font-size: 1.35rem !important; }
+    h4 { font-size: 1.15rem !important; }
     
     /* Completely hide Streamlit sidebar button & sidebar panel */
     [data-testid="collapsedSidebarNoOverlay"] {
@@ -102,8 +106,8 @@ st.markdown("""
         background-color: #F8CB46;
         color: #1e293b;
         border-radius: 12px;
-        width: 50px;
-        height: 50px;
+        width: 120px;
+        height: 120px;
         display: flex;
         align-items: center;
         justify-content: center;
@@ -127,62 +131,104 @@ st.markdown("""
         display: flex;
         flex-direction: column;
         justify-content: center;
+        margin-top: -15px !important;
     }
     .header-brand-row {
         display: flex;
         align-items: center;
-        gap: 8px;
+        gap: 12px;
     }
     .header-title {
-        font-size: 2.05rem;
-        font-weight: 850;
-        color: #1e293b;
-        letter-spacing: -0.8px;
-        line-height: 1;
+        font-size: 2.00rem !important;
+        font-weight: 900 !important;
+        color: #0f172a !important;
+        letter-spacing: -1px !important;
+        line-height: 1.1 !important;
     }
     .header-badge {
-        background-color: #F8CB46;
-        color: #1e293b;
-        font-weight: 800;
-        font-size: 0.62rem;
-        padding: 3px 8px;
-        border-radius: 9999px;
-        text-transform: uppercase;
-        letter-spacing: 0.8px;
-        display: inline-block;
-        line-height: 1;
+        background-color: #F8CB46 !important;
+        color: #1e293b !important;
+        font-weight: 900 !important;
+        font-size: 0.82rem !important;
+        padding: 5px 14px !important;
+        border-radius: 9999px !important;
+        text-transform: uppercase !important;
+        letter-spacing: 1.2px !important;
+        display: inline-block !important;
+        line-height: 1.2 !important;
     }
     .header-subtitle {
-        font-size: 0.78rem;
-        color: #64748b;
+        font-size: 1.1rem !important;
+        color: #0f172a !important;
         font-weight: 400;
-        margin-top: 3px;
-        line-height: 1;
+        line-height: 1.2 !important;
+        margin-top: 0px !important;
     }
     .header-right {
-        font-size: 1.2rem;
-        color: #64748b;
-        font-weight: 400;
-        letter-spacing: -0.2px;
+        font-size: 1.15rem !important;
+        color: #475569 !important;
+        font-weight: 500 !important;
+        letter-spacing: 2px !important;
+        line-height: 1.3 !important;
+        margin-top: 18px !important;
     }
 
     /* Premium Streamlit Tabs Custom CSS */
+    div[data-baseweb="tab-list"] {
+        gap: 12px !important;
+        border-bottom: 2px solid #e2e8f0 !important;
+        padding-bottom: 8px !important;
+        margin-bottom: 1rem !important;
+    }
     button[data-baseweb="tab"] {
         font-family: 'Outfit', sans-serif !important;
-        font-size: 0.95rem !important;
-        font-weight: 700 !important;
-        color: #475569 !important;
-        padding: 0.5rem 1.5rem !important;
-        border-radius: 8px 8px 0 0 !important;
-        transition: background-color 0.2s, color 0.2s !important;
+        font-size: 1.12rem !important;
+        font-weight: 900 !important;
+        text-transform: uppercase !important;
+        letter-spacing: 0.8px !important;
+        color: #1e293b !important;
+        background-color: #f8fafc !important;
+        border: 2px solid #cbd5e1 !important;
+        border-radius: 30px !important;
+        padding: 10px 24px !important;
+        transition: all 0.25s ease-in-out !important;
     }
     button[data-baseweb="tab"]:hover {
         color: #0C831F !important;
-        background-color: #f1f5f9 !important;
+        background-color: #f0fdf4 !important;
+        border-color: #0C831F !important;
     }
     button[data-baseweb="tab"][aria-selected="true"] {
-        color: #0C831F !important;
-        border-bottom: 3px solid #0C831F !important;
+        color: white !important;
+        background-color: #0C831F !important;
+        border-color: #0C831F !important;
+        box-shadow: 0 6px 16px rgba(12, 131, 31, 0.25) !important;
+    }
+
+    /* Banner-specific styles to prevent global scaling overrides */
+    .banner-label {
+        font-size: 0.72rem !important;
+        font-weight: 800 !important;
+        text-transform: uppercase !important;
+        letter-spacing: 0.5px !important;
+        padding: 2px 6px !important;
+        border-radius: 9999px !important;
+        display: inline-block !important;
+        line-height: 1.2 !important;
+    }
+    .banner-title {
+        font-family: 'Outfit', sans-serif !important;
+        font-weight: 900 !important;
+        font-size: 1.15rem !important;
+        color: #1e293b !important;
+        line-height: 1.2 !important;
+        margin: 0.25rem 0 0 0 !important;
+    }
+    .banner-text {
+        font-size: 0.85rem !important;
+        line-height: 1.35 !important;
+        color: #334155 !important;
+        margin: 0 !important;
     }
 
     /* Style primary button to be green */
@@ -579,8 +625,7 @@ rq_labels = {
     "Q4": "How does user trust differ between fresh groceries and packaged goods?",
     "Q5": "What information (reviews, specifications) do users need before trying a new category?",
     "Q6": "What app interface elements cause friction during category exploration?",
-    "Q7": "Which user segments are more likely to experiment with non-grocery categories?",
-    "Q8": "What is the emotional role of quick commerce in the user's daily habit loop?"
+    "Q7": "What is the emotional role of quick commerce in the user's daily habit loop?"
 }
 
 # ==================== MAIN PAGE BRAND HEADER ====================
@@ -598,10 +643,8 @@ st.markdown(f"""<div class="custom-header">
 <span class="header-badge">BLINKIT</span>
 </div>
 <div class="header-subtitle">Listening Engine for Shoppers</div>
+<div class="header-right">Why users repeat categories, and what unlocks exploration</div>
 </div>
-</div>
-<div class="header-right">
-Why users repeat categories, and what unlocks exploration
 </div>
 </div>""", unsafe_allow_html=True)
 
@@ -612,40 +655,40 @@ if rider_base64 and banner_base64 and category_base64:
     col_banner1, col_banner_mid, col_banner2 = st.columns([1, 2.5, 1])
     with col_banner1:
         st.markdown(f"""
-        <div style="background-color: white; border: 1px solid #e2e8f0; border-radius: 16px; padding: 1rem; box-shadow: 0 4px 15px rgba(0,0,0,0.01); display: flex; flex-direction: column; justify-content: space-between; height: 160px; overflow: hidden; margin-bottom: 1.5rem;">
+        <div style="background-color: white; border: 1px solid #e2e8f0; border-radius: 16px; padding: 1rem; box-shadow: 0 4px 15px rgba(0,0,0,0.01); display: flex; flex-direction: column; justify-content: space-between; height: 185px; overflow: hidden; margin-bottom: 1.5rem;">
             <div style="display: flex; align-items: flex-start; justify-content: space-between; gap: 0.5rem; width: 100%;">
                 <div>
-                    <span style="background-color: #fef3c7; color: #b45309; font-size: 0.62rem; font-weight: 800; padding: 2px 6px; border-radius: 9999px; text-transform: uppercase; letter-spacing: 0.5px;">Operations</span>
-                    <h3 style="margin: 0.25rem 0 0 0; font-family: 'Outfit', sans-serif; font-weight: 800; font-size: 1.05rem; color: #1e293b; line-height: 1.1;">Delivered in Minutes</h3>
+                    <span class="banner-label" style="background-color: #fef3c7; color: #b45309;">Operations</span>
+                    <h3 class="banner-title">Delivered in Minutes</h3>
                 </div>
-                <div style="width: 50px; height: 50px; border-radius: 8px; overflow: hidden; flex-shrink: 0; box-shadow: 0 2px 6px rgba(0,0,0,0.05);">
+                <div style="width: 72px; height: 72px; border-radius: 10px; overflow: hidden; flex-shrink: 0; box-shadow: 0 2px 8px rgba(0,0,0,0.08);">
                     <img src="data:image/jpeg;base64,{rider_base64}" style="width: 100%; height: 100%; object-fit: cover;" />
                 </div>
             </div>
-            <p style="margin: 0; color: #020b1a; font-size: 0.9rem; line-height: 1.3;">
+            <p class="banner-text">
                 Analyzing instant-delivery touchpoints to bridge emergency orders and weekly grocery baskets.
             </p>
         </div>
         """, unsafe_allow_html=True)
     with col_banner_mid:
         st.markdown(f"""
-        <div style="background-color: white; border: 1px solid #e2e8f0; border-radius: 16px; overflow: hidden; box-shadow: 0 4px 15px rgba(0,0,0,0.01); height: 160px; margin-bottom: 1.5rem; display: flex; align-items: center; justify-content: center;">
+        <div style="background-color: white; border: 1px solid #e2e8f0; border-radius: 16px; overflow: hidden; box-shadow: 0 4px 15px rgba(0,0,0,0.01); height: 185px; margin-bottom: 1.5rem; display: flex; align-items: center; justify-content: center;">
             <img src="data:image/jpeg;base64,{banner_base64}" style="width: 100%; height: 100%; object-fit: cover;" />
         </div>
         """, unsafe_allow_html=True)
     with col_banner2:
         st.markdown(f"""
-        <div style="background-color: white; border: 1px solid #e2e8f0; border-radius: 16px; padding: 1rem; box-shadow: 0 4px 15px rgba(0,0,0,0.01); display: flex; flex-direction: column; justify-content: space-between; height: 160px; overflow: hidden; margin-bottom: 1.5rem;">
+        <div style="background-color: white; border: 1px solid #e2e8f0; border-radius: 16px; padding: 1rem; box-shadow: 0 4px 15px rgba(0,0,0,0.01); display: flex; flex-direction: column; justify-content: space-between; height: 185px; overflow: hidden; margin-bottom: 1.5rem;">
             <div style="display: flex; align-items: flex-start; justify-content: space-between; gap: 0.5rem; width: 100%;">
                 <div>
-                    <span style="background-color: #dcfce7; color: #15803d; font-size: 0.62rem; font-weight: 800; padding: 2px 6px; border-radius: 9999px; text-transform: uppercase; letter-spacing: 0.5px;">Growth Strategy</span>
-                    <h3 style="margin: 0.25rem 0 0 0; font-family: 'Outfit', sans-serif; font-weight: 800; font-size: 1.05rem; color: #1e293b; line-height: 1.1;">Category-Discovery</h3>
+                    <span class="banner-label" style="background-color: #dcfce7; color: #15803d;">Growth Strategy</span>
+                    <h3 class="banner-title">Category-Discovery</h3>
                 </div>
-                <div style="width: 50px; height: 50px; border-radius: 8px; overflow: hidden; flex-shrink: 0; box-shadow: 0 2px 6px rgba(0,0,0,0.05);">
+                <div style="width: 72px; height: 72px; border-radius: 10px; overflow: hidden; flex-shrink: 0; box-shadow: 0 2px 8px rgba(0,0,0,0.08);">
                     <img src="data:image/jpeg;base64,{category_base64}" style="width: 100%; height: 100%; object-fit: cover;" />
                 </div>
             </div>
-            <p style="margin: 0; color: #020b1a; font-size: 0.9rem; line-height: 1.3;">
+            <p class="banner-text">
                 Converting qualitative user voices into opportunity scores to drive adoption in new categories.
             </p>
         </div>
@@ -732,7 +775,7 @@ with tab_insights:
         filtered_insights.append(insight)
 
     # Opportunity Cards Section
-    st.markdown(f"#### 📊 Discovered Growth Opportunity Cards ({len(filtered_insights)} items)")
+    st.markdown(f"#### 📊 Discovered Growth Opportunity Cards ({len(filtered_insights)} insights)")
     
     if not filtered_insights:
         st.info("No insights match the current filter selection.")
@@ -761,7 +804,7 @@ with tab_insights:
                         <div class="card-opp-score">Score: {insight['opportunity_score']:.1f}</div>
                     </div>
                     <h4 style="margin: 0; font-family: 'Outfit', sans-serif; font-weight: 700; font-size: 1.1rem; color: #121212; line-height: 1.3;">Insight #{global_idx}: {insight['insight_title']}</h4>
-                    <p style="margin: 0; font-size: 0.85rem; color: #475569; line-height: 1.5;">{insight['finding']}</p>
+                    <p style="margin: 0; font-size: 0.95rem; color: #01060e; line-height: 1.8;">{insight['finding']}</p>
                 </div>
                 """, unsafe_allow_html=True)
                 
@@ -998,20 +1041,17 @@ Note: Multi-intent extraction correctly identifies high-signal satisfaction desp
         """, unsafe_allow_html=True)
         
         c_matrix_after = val_report.get("confusion_matrix_after", {})
-        themes_list = ["Habit Loop", "Awareness Gap", "Mental Model", "Trust Quality", "Trust Information", "Price Value", "UX Friction", "Assortment Gap", "Delivery Ops", "Emotional", "Other"]
+        themes_list = ["Habit Loop", "Awareness Gap", "Mental Model", "Trust Quality", "Price Value", "UX Friction", "Assortment Gap", "Emotional"]
         
         label_to_key = {
             "Habit Loop": "habit_loop",
             "Awareness Gap": "awareness_gap",
             "Mental Model": "mental_model",
             "Trust Quality": "trust_quality",
-            "Trust Information": "trust_information",
             "Price Value": "price_value",
             "UX Friction": "ux_friction",
             "Assortment Gap": "assortment_gap",
-            "Delivery Ops": "delivery_ops",
-            "Emotional": "emotional",
-            "Other": "other"
+            "Emotional": "emotional"
         }
 
         table_html = '<table class="matrix-table"><tr><th>Expert / LLM</th>' + "".join(f"<th>{t}</th>" for t in themes_list) + "</tr>"
@@ -1038,7 +1078,7 @@ with tab_routing:
     <div style="margin-bottom: 1.5rem; margin-top: 1rem;">
         <h2 style="margin: 0; font-family: 'Outfit', sans-serif; font-weight: 800; color: #121212;">Research Answer Map</h2>
         <p style="color: #64748b; font-size: 0.95rem; margin-top: 0.25rem;">
-            Tracing the customer journey through 8 core intelligence pillars. Data points are harvested from real-time consumer listening and AI discovery.
+            Tracing the customer journey through 7 core intelligence pillars. Data points are harvested from real-time consumer listening and AI discovery.
         </p>
     </div>
     """, unsafe_allow_html=True)
@@ -1060,15 +1100,14 @@ with tab_routing:
         "Q4": {"name": "TRUST DIVERGENCE", "color": "#0C831F"},
         "Q5": {"name": "INFORMATION BARRIER", "color": "#ef4444"},
         "Q6": {"name": "UX FRICTION", "color": "#0C831F"},
-        "Q7": {"name": "DEMOGRAPHIC DRIFT", "color": "#ef4444"},
-        "Q8": {"name": "HABITUAL EMOTION", "color": "#0C831F"}
+        "Q7": {"name": "HABITUAL EMOTION", "color": "#0C831F"}
     }
 
     # Render Q1 to Q8 Cards
     for idx_q, (rq_id, rq_desc) in enumerate(rq_labels.items()):
         category_info = rq_categories.get(rq_id, {"name": "RESEARCH PILLAR", "color": "#64748B"})
         mapped_list = rq_mapping.get(rq_id, [])
-        is_gap = rq_id in ["Q5", "Q7"]
+        is_gap = False
 
         if not is_gap:
             # Standard Question Card (Green Theme)
@@ -1141,19 +1180,12 @@ with tab_routing:
         else:
             # Quarantined Gap Card (Red Theme - matching screen2.png Card 5)
             gap_item = next((g for g in gaps if g["id"] == rq_id), None)
-            probing_question = ""
-            if rq_id == "Q5":
-                probing_question = "Before buying face serums, pet foods, or diapers, what details or specs would make you order on Blinkit instead of DMart/Amazon?"
-                missing_data_bullets = [
-                    "No visibility on customer specification expectations for high-consideration beauty/baby categories.",
-                    "Lack of confidence grading details for private-label trust metrics."
-                ]
-            else:
-                probing_question = "Have you or anyone you know bought non-grocery items like Pujasamagri or stationery on quick commerce? What prompted that first trial?"
-                missing_data_bullets = [
-                    "Inconsistent signal from non-urban or older age cohorts (45-55).",
-                    "Self-reported survey data conflicts with direct play store feedback behavior."
-                ]
+            probing_question = "Before buying face serums, pet foods, or diapers, what details or specs would make you order on Blinkit instead of DMart/Amazon?"
+            missing_data_bullets = [
+                "Inadequate product description depth for high-consideration kitchen/home products (e.g. dinner sets).",
+                "Hidden or missing product details and images on product listing pages.",
+                "Lack of confidence grading details and peer reviews for private-label trust metrics."
+            ]
                 
             st.markdown(f"""<div style="background-color: #fff5f5; border: 1px solid #fee2e2; border-radius: 12px; padding: 1.5rem; margin-bottom: 1.5rem; box-shadow: 0 4px 10px rgba(0,0,0,0.01);">
 <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.75rem;">
@@ -1168,9 +1200,20 @@ with tab_routing:
 <div style="font-weight: 700; font-size: 0.8rem; color: #b91c1c; text-transform: uppercase; margin-bottom: 8px; letter-spacing: 0.5px;">Missing Data Blocks:</div>
 <ul style="margin: 0; padding-left: 1.2rem; font-size: 0.85rem; color: #475569; line-height: 1.5;">
 <li style="margin-bottom: 6px;">❌ {missing_data_bullets[0]}</li>
-<li>❌ {missing_data_bullets[1]}</li>
+<li style="margin-bottom: 6px;">❌ {missing_data_bullets[1]}</li>
+<li>❌ {missing_data_bullets[2]}</li>
 </ul>
 </div>
+
+<div style="background-color: white; border: 1px solid #fecaca; border-radius: 8px; padding: 1rem; margin-bottom: 1rem;">
+<div style="font-weight: 700; font-size: 0.8rem; color: #b91c1c; text-transform: uppercase; margin-bottom: 8px; letter-spacing: 0.5px;">Supporting Shopper Signal (LENS Reviews & Survey):</div>
+<ul style="margin: 0; padding-left: 1.2rem; font-size: 0.85rem; color: #475569; line-height: 1.5;">
+<li style="margin-bottom: 6px;">💬 <em>"your dinner sets etc require more in product details"</em> (App Store Review)</li>
+<li style="margin-bottom: 6px;">💬 <em>"product images. Images only appear after opening product details"</em> (Google Play Store Review)</li>
+<li>📊 <em>n=42 Survey:</em> Over 50% of users state that <strong>"Reviews from shoppers like me"</strong> or <strong>"Smaller/trial-size option"</strong> is required to build confidence for trying new categories.</li>
+</ul>
+</div>
+
 <div style="background-color: #fee2e2; border-left: 4px solid #ef4444; padding: 0.8rem 1rem; border-radius: 0 8px 8px 0; margin-bottom: 1rem;">
 <div style="font-weight: 700; font-size: 0.8rem; color: #991b1b; text-transform: uppercase; margin-bottom: 2px;">Primary Research Probing Question:</div>
 <p style="margin: 0; font-size: 0.88rem; color: #7f1d1d; font-style: italic; font-weight: 600;">"{probing_question}"</p>

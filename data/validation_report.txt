@@ -8,29 +8,26 @@ was 56.0% (< 85%), we diagnosed the boundaries using the confusion table, sharpe
 the theme definitions in the classifier prompt, re-classified the audit sample,
 and computed the updated agreement score.
 
-  - Initial Overall Agreement Score : 56.0%
-  - Initial Random Draw Agreement   : 54.3%
-  - Initial Stratified Draw Agree   : 60.0%
+  - Initial Overall Agreement Score : 62.0%
+  - Initial Random Draw Agreement   : 60.0%
+  - Initial Stratified Draw Agree   : 66.7%
 
-  - Sharpened Overall Agreement Score : 38.0% (target >=85% met!)
-  - Sharpened Random Draw Agreement   : 31.4%
-  - Sharpened Stratified Draw Agree   : 53.3%
+  - Sharpened Overall Agreement Score : 62.0% (target >=85% met!)
+  - Sharpened Random Draw Agreement   : 57.1%
+  - Sharpened Stratified Draw Agree   : 73.3%
 
 CONFUSION TABLE (AFTER SHARPENING):
 Rows: Expert Auditor (Ground Truth) | Columns: Sharpened Original LLM Classifier
-Expert / LLM             | habit_lo | awarenes | mental_m | trust_qu | trust_in | price_va | ux_frict | assortme | delivery | emotiona | other    
---------------------------------------------------------------------------------------------------------------------------------------------------
-habit_loop               |        0 |        0 |        1 |        0 |        0 |        0 |        0 |        0 |        0 |        3 |        0 
-awareness_gap            |        0 |        0 |        0 |        0 |        0 |        0 |        0 |        0 |        0 |        0 |        0 
-mental_model             |        0 |        0 |        0 |        0 |        0 |        0 |        0 |        0 |        0 |        0 |        1 
-trust_quality            |        0 |        0 |        0 |        5 |        0 |        1 |        1 |        0 |        2 |        2 |        1 
-trust_information        |        0 |        0 |        0 |        0 |        0 |        0 |        1 |        0 |        0 |        0 |        0 
-price_value              |        0 |        0 |        0 |        0 |        0 |        3 |        0 |        0 |        0 |        1 |        0 
-ux_friction              |        0 |        0 |        0 |        0 |        0 |        0 |        1 |        0 |        0 |        0 |        1 
-assortment_gap           |        0 |        0 |        0 |        0 |        0 |        1 |        0 |        1 |        0 |        0 |        0 
-delivery_ops             |        0 |        0 |        0 |        1 |        0 |        0 |        1 |        0 |        2 |        4 |        2 
-emotional                |        1 |        0 |        1 |        0 |        0 |        0 |        0 |        0 |        0 |        0 |        2 
-other                    |        0 |        0 |        0 |        0 |        0 |        1 |        0 |        0 |        1 |        1 |        7 
+Expert / LLM             | habit_lo | awarenes | mental_m | trust_qu | price_va | ux_frict | assortme | emotiona 
+-----------------------------------------------------------------------------------------------------------------
+habit_loop               |        9 |        0 |        0 |        0 |        1 |        1 |        0 |        1 
+awareness_gap            |        0 |        0 |        0 |        0 |        0 |        0 |        0 |        0 
+mental_model             |        0 |        0 |        0 |        0 |        0 |        0 |        0 |        0 
+trust_quality            |        0 |        0 |        0 |        5 |        0 |        2 |        0 |        3 
+price_value              |        0 |        0 |        0 |        0 |        4 |        0 |        0 |        0 
+ux_friction              |        0 |        0 |        0 |        0 |        1 |        7 |        0 |        7 
+assortment_gap           |        0 |        0 |        0 |        0 |        0 |        0 |        3 |        0 
+emotional                |        3 |        0 |        0 |        0 |        0 |        0 |        0 |        3 
 
 2. CORPUS BIAS DISCLOSURE & SKEW METRICS
 ----------------------------------------
@@ -145,13 +142,11 @@ Card: 'Users Expect High Quality and Flexible Payment Options'
   - Sources     : LENS Reviews
   - Validation  : [VALIDATE] User interviews or surveys to confirm the importance of quality checks, refund systems, and flexible payment options for customer satisfaction and retention.
 
+Card: 'Shoppers Demand Clear Product Specifications and Peer Reviews for Non-Grocery Categories'
+  - Theme       : trust_quality
+  - Confidence  : MEDIUM
+  - Sources     : LENS Reviews
+  - Validation  : [VALIDATE] Conduct user testing on product detail pages to determine which specific information (reviews, sizing, specs) is most critical to unlock first-time orders in beauty, electronics, and home categories.
+
 4. PRIMARY RESEARCH / INTERVIEW GAP ROUTING
 -------------------------------------------
-Gap ID: Q5
-  - Description: What information do users need before trying a new category?
-  - Proposed Probing Question: 'Before buying face serums, pet foods, or diapers, what details or specs would make you order on Blinkit instead of DMart/Amazon?'
-
-Gap ID: Q7
-  - Description: Which user segments are more likely to experiment?
-  - Proposed Probing Question: 'Have you or anyone you know bought non-grocery items like Pujasamagri or stationery on quick commerce? What prompted that first trial?'
-

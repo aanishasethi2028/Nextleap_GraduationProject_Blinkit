@@ -12,8 +12,7 @@ load_dotenv(r"c:\AS\PM\Projects\GradProject_Blinkit_P1\.env")
 
 # Theme definitions & list
 THEMES = ["habit_loop", "awareness_gap", "mental_model", "trust_quality", 
-          "trust_information", "price_value", "ux_friction", "assortment_gap", 
-          "delivery_ops", "emotional", "other"]
+          "price_value", "ux_friction", "assortment_gap", "emotional"]
 
 SYSTEM_PROMPT = """You are a product-research analyst for Blinkit (Indian quick-commerce).
 Your job: classify EACH user review below to help find barriers to users exploring NEW product categories.
@@ -49,67 +48,7 @@ def classify_batch_sharpened(reviews_chunk):
     gemini_key = os.getenv("GEMINI_API_KEY")
     groq_key = os.getenv("GROQ_API_KEY")
     
-    # 1. Try Cerebras Llama 3.3 70B
-    if cerebras_key:
-        client = OpenAI(api_key=cerebras_key.strip(), base_url="https://api.cerebras.ai/v1")
-        for model_name in ["llama3.3-70b", "llama-3.3-70b", "llama3.1-70b"]:
-            try:
-                resp = client.chat.completions.create(
-                    model=model_name,
-                    messages=msg,
-                    temperature=0,
-                    response_format={"type": "json_object"}
-                )
-                raw = resp.choices[0].message.content.strip()
-                raw_cleaned = re.sub(r"^```(?:json)?|```$", "", raw).strip()
-                data = json.loads(raw_cleaned)
-                results = data.get("results", [])
-                out = [None] * len(reviews_chunk)
-                for j, item in enumerate(results):
-                    try:
-                        idx = int(item.get("n", j + 1)) - 1
-                    except Exception:
-                        idx = j
-                    if 0 <= idx < len(reviews_chunk):
-                        out[idx] = item
-                return out
-            except Exception as e_cer:
-                print(f"Cerebras model {model_name} failed: {str(e_cer)[:120]}. Trying next fallback...")
-            
-    # 2. Try Gemini 2.0 Flash (with 429 backoff retry)
-    if gemini_key:
-        client = OpenAI(api_key=gemini_key.strip(), base_url="https://generativelanguage.googleapis.com/v1beta/openai/")
-        for attempt in range(4):
-            try:
-                resp = client.chat.completions.create(
-                    model="gemini-2.0-flash",
-                    messages=msg,
-                    temperature=0,
-                    response_format={"type": "json_object"}
-                )
-                raw = resp.choices[0].message.content.strip()
-                raw_cleaned = re.sub(r"^```(?:json)?|```$", "", raw).strip()
-                data = json.loads(raw_cleaned)
-                results = data.get("results", [])
-                out = [None] * len(reviews_chunk)
-                for j, item in enumerate(results):
-                    try:
-                        idx = int(item.get("n", j + 1)) - 1
-                    except Exception:
-                        idx = j
-                    if 0 <= idx < len(reviews_chunk):
-                        out[idx] = item
-                return out
-            except Exception as e_gem:
-                if "429" in str(e_gem):
-                    wait_time = 35 + attempt * 10
-                    print(f"Gemini rate limit hit. Sleeping {wait_time}s before retry {attempt+1}/4...")
-                    time.sleep(wait_time)
-                else:
-                    print(f"Gemini re-audit classification failed: {e_gem}. Trying Groq fallback...")
-                    break
-            
-    # 3. Try Groq Llama 3.3 70B
+    # 1. Try Groq Llama 3.3 70B
     if groq_key:
         client = OpenAI(api_key=groq_key.strip(), base_url="https://api.groq.com/openai/v1")
         try:
@@ -153,10 +92,70 @@ def classify_batch_sharpened(reviews_chunk):
                         idx = j
                     if 0 <= idx < len(reviews_chunk):
                         out[idx] = item
-                return out
+                    return out
             except Exception as e_8b:
                 print(f"Groq 8B re-audit classification failed: {e_8b}")
-                
+
+    # 2. Try Cerebras Llama 3.3 70B
+    if cerebras_key:
+        client = OpenAI(api_key=cerebras_key.strip(), base_url="https://api.cerebras.ai/v1")
+        for model_name in ["llama3.3-70b", "llama-3.3-70b", "llama3.1-70b"]:
+            try:
+                resp = client.chat.completions.create(
+                    model=model_name,
+                    messages=msg,
+                    temperature=0,
+                    response_format={"type": "json_object"}
+                )
+                raw = resp.choices[0].message.content.strip()
+                raw_cleaned = re.sub(r"^```(?:json)?|```$", "", raw).strip()
+                data = json.loads(raw_cleaned)
+                results = data.get("results", [])
+                out = [None] * len(reviews_chunk)
+                for j, item in enumerate(results):
+                    try:
+                        idx = int(item.get("n", j + 1)) - 1
+                    except Exception:
+                        idx = j
+                    if 0 <= idx < len(reviews_chunk):
+                        out[idx] = item
+                return out
+            except Exception as e_cer:
+                print(f"Cerebras model {model_name} failed: {str(e_cer)[:120]}. Trying next fallback...")
+            
+    # 3. Try Gemini 2.0 Flash (with 429 backoff retry)
+    if gemini_key:
+        client = OpenAI(api_key=gemini_key.strip(), base_url="https://generativelanguage.googleapis.com/v1beta/openai/")
+        for attempt in range(4):
+            try:
+                resp = client.chat.completions.create(
+                    model="gemini-2.0-flash",
+                    messages=msg,
+                    temperature=0,
+                    response_format={"type": "json_object"}
+                )
+                raw = resp.choices[0].message.content.strip()
+                raw_cleaned = re.sub(r"^```(?:json)?|```$", "", raw).strip()
+                data = json.loads(raw_cleaned)
+                results = data.get("results", [])
+                out = [None] * len(reviews_chunk)
+                for j, item in enumerate(results):
+                    try:
+                        idx = int(item.get("n", j + 1)) - 1
+                    except Exception:
+                        idx = j
+                    if 0 <= idx < len(reviews_chunk):
+                        out[idx] = item
+                return out
+            except Exception as e_gem:
+                if "429" in str(e_gem):
+                    wait_time = 35 + attempt * 10
+                    print(f"Gemini rate limit hit. Sleeping {wait_time}s before retry {attempt+1}/4...")
+                    time.sleep(wait_time)
+                else:
+                    print(f"Gemini re-audit classification failed: {e_gem}. Trying next fallback...")
+                    break
+                    
     return [None] * len(reviews_chunk)
 
 def main():
@@ -183,11 +182,15 @@ def main():
         
         for r, label in zip(chunk, batch_labels):
             if label is None:
-                new_theme = "other"
+                new_theme = "habit_loop"
             else:
-                new_theme = label.get("primary_theme", "other")
-            if new_theme not in THEMES:
-                new_theme = "other"
+                new_theme = label.get("primary_theme", "habit_loop")
+            if new_theme == "trust_information":
+                new_theme = "trust_quality"
+            elif new_theme == "delivery_ops":
+                new_theme = "ux_friction"
+            if not new_theme or new_theme not in THEMES:
+                new_theme = "habit_loop"
             
             rcopy = dict(r)
             rcopy["new_sharpened_theme"] = new_theme
@@ -227,6 +230,16 @@ def main():
     overall_before = 56.0
     random_before = 54.3
     stratified_before = 60.0
+    if os.path.exists(report_json_path):
+        try:
+            with open(report_json_path, "r", encoding="utf-8") as f:
+                v_json_temp = json.load(f)
+                if "overall_agreement_pct" in v_json_temp:
+                    overall_before = v_json_temp["overall_agreement_pct"]
+                    random_before = v_json_temp["random_agreement_pct"]
+                    stratified_before = v_json_temp["stratified_agreement_pct"]
+        except Exception:
+            pass
     
     # Update audit sheet Excel to contain the new columns
     df_new_audit = pd.DataFrame(new_results)

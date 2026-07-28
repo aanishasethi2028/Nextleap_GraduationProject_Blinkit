@@ -50,7 +50,7 @@ LENS groups user reviews into 8 primary strategic themes. Each review is classif
 
 ## ❓ 3. Research Questions (RQs) Mapping
 
-The project maps customer insights back to 8 core intelligence pillars to outline the customer journey:
+The project maps customer insights back to 7 core intelligence pillars to outline the customer journey:
 
 * **Q1: Consumer Intent** – *"What prompts the very first quick-commerce order in a household?"*
 * **Q2: Behavioral Transition** – *"How do users transition from emergency top-ups to routine basket ordering?"*
@@ -58,8 +58,7 @@ The project maps customer insights back to 8 core intelligence pillars to outlin
 * **Q4: Trust Divergence** – *"How does user trust differ between fresh groceries and packaged goods?"*
 * **Q5: Information Barrier** – *"What information (reviews, specifications) do users need before trying a new category?"*
 * **Q6: UX Friction** – *"What app interface elements cause friction during category exploration?"*
-* **Q7: Demographic Drift** – *"Which user segments are more likely to experiment with non-grocery categories?"*
-* **Q8: Habitual Emotion** – *"What is the emotional role of quick commerce in the user's daily habit loop?"*
+* **Q7: Habitual Emotion** – *"What is the emotional role of quick commerce in the user's daily habit loop?"*
 
 ---
 

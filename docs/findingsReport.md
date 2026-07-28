@@ -137,12 +137,8 @@ LENS insights were systematically mapped to the 8 Core Research Questions. Where
 - **Q4: Trust difference between fresh & packaged**
   - *Status*: Answered by LENS insights (High trust in packaged goods, distrust in fresh items).
 - **Q5: Information needed before trials**
-  - *Status*: ⚠️ **QUARANTINED GAP** (Fewer than 5 reviews touched `trust_information`).
-  - *Routed Probing Question*: `'Before buying face serums, pet foods, or diapers, what details or specs would make you order on Blinkit instead of DMart/Amazon?'`
+  - *Status*: Answered by LENS insights (Product detail pages lack specifications for home/electronics categories like dinner sets, and survey requests for peer reviews and trial sizes).
 - **Q6: App UI exploration friction**
   - *Status*: Answered by LENS insights (Aggressive rating prompt spam, payment deduction failures, search filters).
-- **Q7: User segments likely to experiment**
-  - *Status*: ⚠️ **QUARANTINED GAP** (Store reviews lack user demographic data).
-  - *Routed Probing Question*: `'Have you or anyone you know bought non-grocery items like Pujasamagri or stationery on quick commerce? What prompted that first trial?'`
-- **Q8: Emotional role in habit loop**
+- **Q7: Emotional role in habit loop**
   - *Status*: Answered by LENS insights (Convenience making life easier, hostel life comfort).

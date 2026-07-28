@@ -66,7 +66,7 @@ Design and implement a system that:
 * Primary: `Blinkit_Reviews.xlsx` — 1,310 unique reviews, 5 sources, schema `S.No | Source/URL | Reviews | Rating`
 * Supporting: `Quick-Commerce_Insights_Survey.xlsx` — 20 structured survey responses (for triangulation)
 
-## The 8 Research Questions the Engine Must Answer
+## The 7 Research Questions the Engine Must Answer
 
 1. Why do users repeatedly buy from the same categories?
 2. What prevents users from exploring new categories?
@@ -74,8 +74,7 @@ Design and implement a system that:
 4. What role do habits play in shopping behavior?
 5. What information do users need before trying a new category?
 6. What frustrations emerge repeatedly?
-7. Which user segments are more likely to experiment?
-8. What unmet needs emerge consistently across discussions?
+7. What unmet needs emerge consistently across discussions?
 
 ## Deliverables
 

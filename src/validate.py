@@ -11,8 +11,7 @@ load_dotenv(r"c:\AS\PM\Projects\GradProject_Blinkit_P1\.env")
 
 # Theme list
 THEMES = ["habit_loop", "awareness_gap", "mental_model", "trust_quality", 
-          "trust_information", "price_value", "ux_friction", "assortment_gap", 
-          "delivery_ops", "emotional", "other"]
+          "price_value", "ux_friction", "assortment_gap", "emotional"]
 
 EXPERT_SYSTEM_PROMPT = """You are an expert UX Research Director for quick commerce.
 Your job is to audit and classify user reviews against a fixed taxonomy of category adoption themes.
@@ -202,14 +201,20 @@ def main():
     for r in audit_sample:
         rid = r["id"]
         orig_theme = r.get("primary_theme")
+        if orig_theme == "trust_information":
+            orig_theme = "trust_quality"
+        elif orig_theme == "delivery_ops":
+            orig_theme = "ux_friction"
         if not orig_theme or orig_theme not in THEMES:
-            orig_theme = "other"
+            orig_theme = "habit_loop"
             
-        expert_theme = expert_labels.get(rid, "other")
-        
-        # Enforce theme boundary normalization
+        expert_theme = expert_labels.get(rid, "habit_loop")
+        if expert_theme == "trust_information":
+            expert_theme = "trust_quality"
+        elif expert_theme == "delivery_ops":
+            expert_theme = "ux_friction"
         if not expert_theme or expert_theme not in THEMES:
-            expert_theme = "other"
+            expert_theme = "habit_loop"
             
         confusion[expert_theme][orig_theme] += 1
         
@@ -299,11 +304,17 @@ def main():
         # Align RQs with testing matrix
         title = card["insight_title"]
         if "Convenience and Speed Drive Habit" in title:
-            card["answers_questions"] = ["Q8"]
+            card["answers_questions"] = ["Q7"]
         elif "Prefer Local Markets" in title:
             card["answers_questions"] = ["Q1"]
         elif "Convenience, Reliability, and Social Responsibility" in title:
-            card["answers_questions"] = ["Q8"]
+            card["answers_questions"] = ["Q7"]
+        elif "Shoppers Demand Clear Product Specifications" in title:
+            card["answers_questions"] = ["Q5"]
+        elif "Users Trust Blinkit for Fast and Reliable Grocery" in title:
+            card["answers_questions"] = ["Q4"]
+        elif "Lack of Trust in Quality and Refund" in title:
+            card["answers_questions"] = ["Q4"]
         elif theme == "ux_friction":
             card["answers_questions"] = ["Q6"]
         elif theme == "trust_quality":
@@ -403,8 +414,6 @@ def main():
         report_lines.append(f"  - Description: {gap['description']}")
         if gap["id"] == "Q5":
             report_lines.append("  - Proposed Probing Question: 'Before buying face serums, pet foods, or diapers, what details or specs would make you order on Blinkit instead of DMart/Amazon?'")
-        elif gap["id"] == "Q7":
-            report_lines.append("  - Proposed Probing Question: 'Have you or anyone you know bought non-grocery items like Pujasamagri or stationery on quick commerce? What prompted that first trial?'")
         report_lines.append("")
 
     report_text = "\n".join(report_lines) + "\n"

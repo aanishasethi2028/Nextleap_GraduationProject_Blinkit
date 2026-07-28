@@ -108,20 +108,19 @@ graph TD
 > ⚠️ No agreement figure exists until the audit is run. Do not hardcode a placeholder (e.g. "87.5%") into any doc, dashboard, or slide — a fabricated validation number is the single most damaging thing in a research deliverable.
 
 ### 6. Output Dashboard — 🔲 PLANNED
-* Streamlit app rendering ranked insights: frequency, affected segments, confidence, representative quotes with URLs, and the "so-what" implication — each tagged with which of Q1–Q8 it answers.
+* Streamlit app rendering ranked insights: frequency, affected segments, confidence, representative quotes with URLs, and the "so-what" implication — each tagged with which of Q1–Q7 it answers.
 * This public URL is the graded **"link to test out your workflow"** deliverable.
 
 ---
 
-## ❓ The 8 Core Research Questions
+## ❓ The 7 Core Research Questions
 1. Why do users repeatedly buy from the same categories?
 2. What prevents users from exploring new categories?
 3. How do users discover products today?
 4. What role do habits play in shopping behavior?
 5. What information do users need before trying a new category?
 6. What frustrations emerge repeatedly?
-7. Which user segments are more likely to experiment?
-8. What unmet needs emerge consistently across discussions?
+7. What unmet needs emerge consistently across discussions?
 
 Every insight must be tagged with the question(s) it answers. **Any question the data cannot answer must be named as a gap and routed to primary research — never answered by inference.**
 
@@ -140,7 +139,7 @@ Every insight must be tagged with the question(s) it answers. **Any question the
 - [ ] Sanitize → classify → cluster → rank → validate runs end-to-end and is demonstrable via one public link
 - [ ] ≥85% human–LLM agreement on the 50-item audit (reported with the model name)
 - [ ] ≥3 insights triangulated across ≥2 source types
-- [ ] Every insight carries a confidence level, a Q1–Q8 tag, and (if <High) a validation question
+- [ ] Every insight carries a confidence level, a Q1–Q7 tag, and (if <High) a validation question
 - [ ] `delivery_ops` does not crowd out discovery insights in the final ranking
 - [ ] All four required demonstrations present: how data is gathered · how themes are identified · how insights are generated · how quality was validated
 

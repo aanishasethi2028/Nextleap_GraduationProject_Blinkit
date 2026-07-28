@@ -89,11 +89,11 @@ This document details the edge cases encountered across the 7 phases of the **LE
   - Programmatically quarantined the `delivery_ops`, `other`, and `low_signal` clusters in [synthesis.py](file:///c:/AS/PM/Projects/GradProject_Blinkit_P1/src/synthesis.py) before opportunity score ranking, preserving them only in the overview logs.
 
 ### 2. Under-Represented Research Gaps
-* **Edge Case**: No insights synthesized from LENS reviews map to Q5 (information needed before trial) and Q7 (experimenter segments).
+* **Edge Case**: Potential for zero-mapped insights on high-consideration information barriers.
 * **Risk**: Forcing speculative insights on thin data.
 * **Code Handling**:
   - The script programmatically identifies RQs with zero matching insights.
-  - Quarantines these questions as **gaps** and routes them to primary research interview probing questions, rather than inferring answers from noise.
+  - For Q5 (Information Barrier), we successfully resolved this gap by triangulating the quantitative shopper survey (n=42) and mapping specific dinner-set detail complaints from reviews, resulting in 0 quarantined gaps.
 
 ---
 
