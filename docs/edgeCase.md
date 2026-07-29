@@ -93,7 +93,7 @@ This document details the edge cases encountered across the 7 phases of the **LE
 * **Risk**: Forcing speculative insights on thin data.
 * **Code Handling**:
   - The script programmatically identifies RQs with zero matching insights.
-  - For Q5 (Information Barrier), we successfully resolved this gap by triangulating the quantitative shopper survey (n=42) and mapping specific dinner-set detail complaints from reviews, resulting in 0 quarantined gaps.
+  - For Q5 (Information Barrier), we successfully resolved this gap by triangulating the quantitative shopper survey (n=50) and mapping specific dinner-set detail complaints from reviews, resulting in 0 quarantined gaps.
 
 ---
 

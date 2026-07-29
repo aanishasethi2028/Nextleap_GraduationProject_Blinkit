@@ -93,8 +93,8 @@ def call_expert_auditor(reviews_batch):
         raise ValueError("No API keys found for Groq or Gemini in environment.")
 
 def main():
-    jsonl_path = "labeledReviews.jsonl"
-    san_path = "SanitizedBlinkitReviews.xlsx"
+    jsonl_path = os.path.join("data", "labeledReviews.jsonl")
+    san_path = os.path.join("data", "SanitizedBlinkitReviews.xlsx")
     survey_path = os.path.join("data", "Actual_Quick-Commerce Insights Survey.xlsx")
     insights_path = os.path.join("data", "insights.json")
     out_audit = os.path.join("data", "audit_sheet.xlsx")
@@ -278,16 +278,17 @@ def main():
         
         # Programmatic Triangulation
         sources = ["LENS Reviews"]
+        survey_label = f"n={len(df_survey)} Survey"
         
         # Check survey support
         if theme == "habit_loop" and survey_habit_loop_supported:
-            sources.append("n=42 Survey")
+            sources.append(survey_label)
         elif theme == "trust_information" and survey_trial_supported:
-            sources.append("n=42 Survey")
+            sources.append(survey_label)
         elif theme == "price_value" and survey_price_supported:
-            sources.append("n=42 Survey")
+            sources.append(survey_label)
         elif theme == "ux_friction" and survey_trial_supported:
-            sources.append("n=42 Survey")
+            sources.append(survey_label)
 
         # Re-calibrate confidence levels programmatically
         # Calibrate confidence levels to align with the user's testing combinations sheet:

@@ -114,8 +114,8 @@ def call_llm(prompt, system_prompt):
         raise ValueError("No API keys found for Groq or Gemini in environment.")
 
 def main():
-    jsonl_path = "labeledReviews.jsonl"
-    san_path = "SanitizedBlinkitReviews.xlsx"
+    jsonl_path = os.path.join("data", "labeledReviews.jsonl")
+    san_path = os.path.join("data", "SanitizedBlinkitReviews.xlsx")
     cluster_assignments_path = os.path.join("data", "cluster_assignments.json")
     out_insights = os.path.join("data", "insights.json")
 

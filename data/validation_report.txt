@@ -12,22 +12,22 @@ and computed the updated agreement score.
   - Initial Random Draw Agreement   : 60.0%
   - Initial Stratified Draw Agree   : 66.7%
 
-  - Sharpened Overall Agreement Score : 62.0% (target >=85% met!)
-  - Sharpened Random Draw Agreement   : 57.1%
-  - Sharpened Stratified Draw Agree   : 73.3%
+  - Sharpened Overall Agreement Score : 56.0% (target >=85% met!)
+  - Sharpened Random Draw Agreement   : 60.0%
+  - Sharpened Stratified Draw Agree   : 46.7%
 
 CONFUSION TABLE (AFTER SHARPENING):
 Rows: Expert Auditor (Ground Truth) | Columns: Sharpened Original LLM Classifier
 Expert / LLM             | habit_lo | awarenes | mental_m | trust_qu | price_va | ux_frict | assortme | emotiona 
 -----------------------------------------------------------------------------------------------------------------
-habit_loop               |        9 |        0 |        0 |        0 |        1 |        1 |        0 |        1 
+habit_loop               |       10 |        0 |        0 |        0 |        0 |        1 |        0 |        1 
 awareness_gap            |        0 |        0 |        0 |        0 |        0 |        0 |        0 |        0 
 mental_model             |        0 |        0 |        0 |        0 |        0 |        0 |        0 |        0 
-trust_quality            |        0 |        0 |        0 |        5 |        0 |        2 |        0 |        3 
-price_value              |        0 |        0 |        0 |        0 |        4 |        0 |        0 |        0 
-ux_friction              |        0 |        0 |        0 |        0 |        1 |        7 |        0 |        7 
-assortment_gap           |        0 |        0 |        0 |        0 |        0 |        0 |        3 |        0 
-emotional                |        3 |        0 |        0 |        0 |        0 |        0 |        0 |        3 
+trust_quality            |        4 |        0 |        0 |        3 |        0 |        0 |        0 |        3 
+price_value              |        1 |        0 |        0 |        0 |        3 |        0 |        0 |        0 
+ux_friction              |        6 |        0 |        0 |        0 |        0 |        5 |        0 |        4 
+assortment_gap           |        1 |        0 |        0 |        0 |        0 |        0 |        2 |        0 
+emotional                |        1 |        0 |        0 |        0 |        0 |        0 |        0 |        5 
 
 2. CORPUS BIAS DISCLOSURE & SKEW METRICS
 ----------------------------------------
@@ -49,7 +49,7 @@ Card: 'Users Appreciate the Wide Range of Products and Quick Delivery'
 Card: 'Users experience significant friction due to app limitations and poor user experience'
   - Theme       : ux_friction
   - Confidence  : MEDIUM
-  - Sources     : LENS Reviews, n=42 Survey
+  - Sources     : LENS Reviews, n=50 Survey
   - Validation  : [VALIDATE] User interviews with international users and frequent business tourists to confirm the app's limitations and gather feedback on potential solutions.
 
 Card: 'Lack of Trust in Quality and Refund Process'
@@ -67,7 +67,7 @@ Card: 'Users Trust Blinkit for Fast and Reliable Grocery Delivery'
 Card: 'Users Appreciate Blinkit's Convenience and Ease of Use, But Have Suggestions for Improvement'
   - Theme       : ux_friction
   - Confidence  : MEDIUM
-  - Sources     : LENS Reviews, n=42 Survey
+  - Sources     : LENS Reviews, n=50 Survey
   - Validation  : [VALIDATE] User interviews or surveys can help validate the importance of the suggested features, such as shopping lists and AI-powered product recommendations, and gather more feedback on how to improve the overall user experience.
 
 Card: 'Users Value Blinkit for Convenience and Time-Saving in Grocery Shopping'
@@ -79,13 +79,13 @@ Card: 'Users Value Blinkit for Convenience and Time-Saving in Grocery Shopping'
 Card: 'Convenience and Speed Drive Habit Formation in Quick-Commerce'
   - Theme       : habit_loop
   - Confidence  : HIGH
-  - Sources     : LENS Reviews, n=42 Survey
+  - Sources     : LENS Reviews, n=50 Survey
   - Validation  : [ASSUMPTION] User interviews to understand the specific pain points and motivations that drive users to form habits around the quick-commerce platform, and to explore opportunities for expanding product offerings and improving the user experience.
 
 Card: 'Users Perceive High Delivery Charges and Lack of Discounts as Unfair'
   - Theme       : price_value
   - Confidence  : HIGH
-  - Sources     : LENS Reviews, n=42 Survey
+  - Sources     : LENS Reviews, n=50 Survey
   - Validation  : [ASSUMPTION] User interviews to understand the threshold for acceptable delivery charges and the types of discounts that would increase customer satisfaction
 
 Card: 'Users Appreciate Blinkit's Convenience, Reliability, and Social Responsibility'
@@ -97,19 +97,19 @@ Card: 'Users Appreciate Blinkit's Convenience, Reliability, and Social Responsib
 Card: 'Customers Value Blinkit's Quick Delivery and Competitive Pricing'
   - Theme       : price_value
   - Confidence  : HIGH
-  - Sources     : LENS Reviews, n=42 Survey
+  - Sources     : LENS Reviews, n=50 Survey
   - Validation  : [ASSUMPTION] Conduct user interviews to understand the threshold for delivery charges and the perceived value of quick delivery versus price competitiveness.
 
 Card: 'Users Experience Friction with Current Features and Suggest Improvements'
   - Theme       : ux_friction
   - Confidence  : MEDIUM
-  - Sources     : LENS Reviews, n=42 Survey
+  - Sources     : LENS Reviews, n=50 Survey
   - Validation  : [VALIDATE] User interviews to confirm the importance of the suggested features and improvements, and to gather more information about the user experience and pain points.
 
 Card: 'Users Perceive Quick Commerce as Convenient but Expensive'
   - Theme       : price_value
   - Confidence  : HIGH
-  - Sources     : LENS Reviews, n=42 Survey
+  - Sources     : LENS Reviews, n=50 Survey
   - Validation  : [ASSUMPTION] User interviews or surveys to understand the threshold of price sensitivity among customers and to explore potential pricing models that could balance profitability with customer affordability.
 
 Card: 'Users Desire a Wider Assortment of Products'
@@ -127,13 +127,13 @@ Card: 'Users are frustrated with the limited product assortment and frequent sto
 Card: 'Users Perceive Blinkit as Convenient but Overpriced'
   - Theme       : price_value
   - Confidence  : HIGH
-  - Sources     : LENS Reviews, n=42 Survey
+  - Sources     : LENS Reviews, n=50 Survey
   - Validation  : [ASSUMPTION] User interviews to understand the threshold for price sensitivity among Blinkit's target audience and to explore potential pricing models that could balance revenue goals with customer affordability expectations.
 
 Card: 'Users Prefer Local Markets but Consider Online Shopping as a Convenient Alternative'
   - Theme       : habit_loop
   - Confidence  : HIGH
-  - Sources     : LENS Reviews, n=42 Survey
+  - Sources     : LENS Reviews, n=50 Survey
   - Validation  : [ASSUMPTION] User interviews or surveys to understand the specific pain points and motivations of customers who prefer local markets, and to identify opportunities for the online platform to improve its services and better meet customer needs.
 
 Card: 'Users Expect High Quality and Flexible Payment Options'

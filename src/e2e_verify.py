@@ -87,9 +87,9 @@ def check_insights_json(path):
 def check_survey_xlsx(path):
     df = pd.read_excel(path)
     rows = len(df)
-    if rows != 42:
-        return False, f"Expected 42 survey respondents, got {rows}"
-    return True, f"n=42 actual respondents verified"
+    if rows != 50:
+        return False, f"Expected 50 survey respondents, got {rows}"
+    return True, f"n=50 actual respondents verified"
 
 def check_audit_sheet(path):
     df = pd.read_excel(path)
@@ -138,8 +138,8 @@ def main():
     print("==========================================================")
     
     scripts = [
-        "sanitizeReviews.py",
-        "classifyReviews.py",
+        "data/sanitizeReviews.py",
+        "src/classifyReviews.py",
         "src/clustering.py",
         "src/synthesis.py",
         "src/validate.py",
@@ -155,10 +155,10 @@ def main():
     print("\n------------------ Checking Output Files ------------------")
     
     files_to_check = [
-        ("SanitizedBlinkitReviews.xlsx", check_sanitized_xlsx, "Sanitized Review Sheet"),
+        ("data/SanitizedBlinkitReviews.xlsx", check_sanitized_xlsx, "Sanitized Review Sheet"),
         ("data/sanitize_report.txt", check_sanitize_report, "Sanitization Report Log"),
-        ("labeledReviews.jsonl", check_labeled_jsonl, "LLM Labeled Corpus"),
-        ("themeSummary.csv", check_theme_summary, "Theme Distribution CSV"),
+        ("data/labeledReviews.jsonl", check_labeled_jsonl, "LLM Labeled Corpus"),
+        ("data/themeSummary.csv", check_theme_summary, "Theme Distribution CSV"),
         ("data/cluster_assignments.json", check_cluster_assignments, "Semantic Clusters Mapping"),
         ("data/insights.json", check_insights_json, "Ranked Growth Insights & Gaps"),
         ("data/Actual_Quick-Commerce Insights Survey.xlsx", check_survey_xlsx, "Actual Triangulation Survey"),

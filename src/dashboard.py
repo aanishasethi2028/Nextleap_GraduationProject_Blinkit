@@ -743,7 +743,7 @@ with tab_insights:
             selected_conf = st.selectbox("Select Confidence", ["All Confidences", "HIGH", "MEDIUM", "LOW"])
             
         with col_f4:
-            source_options = ["All Sources"] + [("Survey" if s == "n=42 Survey" else s) for s in all_sources]
+            source_options = ["All Sources"] + [("Survey" if "Survey" in s else s) for s in all_sources]
             selected_source_label = st.selectbox("Select Source", source_options)
             
         with col_btn:
@@ -769,7 +769,7 @@ with tab_insights:
         if selected_rq != "All Research Questions" and selected_rq not in insight["answers_questions"]:
             continue
         if selected_source_label != "All Sources":
-            actual_source = "n=42 Survey" if selected_source_label == "Survey" else selected_source_label
+            actual_source = next((s for s in all_sources if "Survey" in s), selected_source_label) if selected_source_label == "Survey" else selected_source_label
             if actual_source not in insight["triangulated_sources"]:
                 continue
         filtered_insights.append(insight)
@@ -1210,7 +1210,7 @@ with tab_routing:
 <ul style="margin: 0; padding-left: 1.2rem; font-size: 0.85rem; color: #475569; line-height: 1.5;">
 <li style="margin-bottom: 6px;">💬 <em>"your dinner sets etc require more in product details"</em> (App Store Review)</li>
 <li style="margin-bottom: 6px;">💬 <em>"product images. Images only appear after opening product details"</em> (Google Play Store Review)</li>
-<li>📊 <em>n=42 Survey:</em> Over 50% of users state that <strong>"Reviews from shoppers like me"</strong> or <strong>"Smaller/trial-size option"</strong> is required to build confidence for trying new categories.</li>
+<li>📊 <em>n=50 Survey:</em> Over 50% of users state that <strong>"Reviews from shoppers like me"</strong> or <strong>"Smaller/trial-size option"</strong> is required to build confidence for trying new categories.</li>
 </ul>
 </div>
 

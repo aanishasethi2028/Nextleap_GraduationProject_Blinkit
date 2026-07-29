@@ -26,7 +26,7 @@ def get_source_type(url):
 
 def main():
     raw_path = os.path.join("data", "SanitozedReport.xlsx")
-    out_xlsx = "SanitizedBlinkitReviews.xlsx"
+    out_xlsx = os.path.join("data", "SanitizedBlinkitReviews.xlsx")
     out_report = os.path.join("data", "sanitize_report.txt")
     out_txtx = os.path.join("data", ".txtx")
 

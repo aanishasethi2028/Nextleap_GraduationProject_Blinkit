@@ -5,6 +5,7 @@ from unittest.mock import MagicMock
 
 # Add workspace root to Python path
 sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), "..")))
+sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), "../data")))
 
 # Mock Streamlit to allow importing dashboard.py without Streamlit runtime errors
 # Mock Streamlit to allow importing dashboard.py without Streamlit runtime errors

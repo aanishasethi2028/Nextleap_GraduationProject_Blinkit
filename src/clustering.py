@@ -7,8 +7,8 @@ from sentence_transformers import SentenceTransformer
 import hdbscan
 
 def main():
-    jsonl_path = "labeledReviews.jsonl"
-    san_path = "SanitizedBlinkitReviews.xlsx"
+    jsonl_path = os.path.join("data", "labeledReviews.jsonl")
+    san_path = os.path.join("data", "SanitizedBlinkitReviews.xlsx")
     out_dir = "data"
     out_json = os.path.join(out_dir, "cluster_assignments.json")
     out_summary = os.path.join(out_dir, "clustering_summary.txt")

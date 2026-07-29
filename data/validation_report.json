@@ -96,17 +96,17 @@
     "stratified_agreement_pct": 66.66666666666666
   },
   "after_audit": {
-    "overall_agreement_pct": 62.0,
-    "random_agreement_pct": 57.14285714285714,
-    "stratified_agreement_pct": 73.33333333333333
+    "overall_agreement_pct": 56.00000000000001,
+    "random_agreement_pct": 60.0,
+    "stratified_agreement_pct": 46.666666666666664
   },
   "confusion_matrix_after": {
     "habit_loop": {
-      "habit_loop": 9,
+      "habit_loop": 10,
       "awareness_gap": 0,
       "mental_model": 0,
       "trust_quality": 0,
-      "price_value": 1,
+      "price_value": 0,
       "ux_friction": 1,
       "assortment_gap": 0,
       "emotional": 1
@@ -132,54 +132,54 @@
       "emotional": 0
     },
     "trust_quality": {
-      "habit_loop": 0,
+      "habit_loop": 4,
       "awareness_gap": 0,
       "mental_model": 0,
-      "trust_quality": 5,
+      "trust_quality": 3,
       "price_value": 0,
-      "ux_friction": 2,
+      "ux_friction": 0,
       "assortment_gap": 0,
       "emotional": 3
     },
     "price_value": {
-      "habit_loop": 0,
+      "habit_loop": 1,
       "awareness_gap": 0,
       "mental_model": 0,
       "trust_quality": 0,
-      "price_value": 4,
+      "price_value": 3,
       "ux_friction": 0,
       "assortment_gap": 0,
       "emotional": 0
     },
     "ux_friction": {
-      "habit_loop": 0,
+      "habit_loop": 6,
       "awareness_gap": 0,
       "mental_model": 0,
       "trust_quality": 0,
-      "price_value": 1,
-      "ux_friction": 7,
+      "price_value": 0,
+      "ux_friction": 5,
       "assortment_gap": 0,
-      "emotional": 7
+      "emotional": 4
     },
     "assortment_gap": {
-      "habit_loop": 0,
+      "habit_loop": 1,
       "awareness_gap": 0,
       "mental_model": 0,
       "trust_quality": 0,
       "price_value": 0,
       "ux_friction": 0,
-      "assortment_gap": 3,
+      "assortment_gap": 2,
       "emotional": 0
     },
     "emotional": {
-      "habit_loop": 3,
+      "habit_loop": 1,
       "awareness_gap": 0,
       "mental_model": 0,
       "trust_quality": 0,
       "price_value": 0,
       "ux_friction": 0,
       "assortment_gap": 0,
-      "emotional": 3
+      "emotional": 5
     }
   }
 }

@@ -42,8 +42,8 @@ except Exception:
 from openai import OpenAI   # OpenAI-compatible client works with Groq
 
 # ----- config -----
-INPUT_XLSX   = "SanitizedBlinkitReviews.xlsx"
-OUTPUT_JSONL = "labeledReviews.jsonl"
+INPUT_XLSX   = os.path.join("data", "SanitizedBlinkitReviews.xlsx")
+OUTPUT_JSONL = os.path.join("data", "labeledReviews.jsonl")
 MODEL        = "llama-3.1-8b-instant"
 client       = OpenAI(api_key=os.getenv("GROQ_API_KEY"), base_url="https://api.groq.com/openai/v1")
 SLEEP        = 0.5
@@ -242,7 +242,7 @@ def main():
             f.write(json.dumps(r, ensure_ascii=False) + "\n")
 
     s = pd.Series([x.get("primary_theme", "?") for x in recs]).value_counts()
-    s.to_csv("themeSummary.csv", index_label="primary_theme", header=["count"])
+    s.to_csv(os.path.join("data", "themeSummary.csv"), index_label="primary_theme", header=["count"])
 
     print("\n" + "=" * 60)
     print("  ALL ROWS PROCESSED" if len(recs) >= total else "  PARTIAL — re-run to continue")

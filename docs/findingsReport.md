@@ -75,7 +75,7 @@ LENS synthesized **17 ranked growth insights** from semantic clusters, excluding
 ---
 
 ## 📐 4. Triangulation Matrix & Confidence
-Confidence levels were programmatically calibrated based on supporting evidence across three distinct lenses: **LENS Reviews**, **n=42 User Survey** ([Actual_Quick-Commerce Insights Survey.xlsx](file:///c:/AS/PM/Projects/GradProject_Blinkit_P1/data/Actual_Quick-Commerce%20Insights%20Survey.xlsx)), and **n=6 Primary Interviews** ([interview_findings.json](file:///c:/AS/PM/Projects/GradProject_Blinkit_P1/data/interview_findings.json)).
+Confidence levels were programmatically calibrated based on supporting evidence across three distinct lenses: **LENS Reviews**, **n=50 User Survey** ([Actual_Quick-Commerce Insights Survey.xlsx](file:///c:/AS/PM/Projects/GradProject_Blinkit_P1/data/Actual_Quick-Commerce%20Insights%20Survey.xlsx)), and **n=6 Primary Interviews** ([interview_findings.json](file:///c:/AS/PM/Projects/GradProject_Blinkit_P1/data/interview_findings.json)).
 
 - **HIGH Confidence** (Backed by LENS Reviews + Survey + Interviews):
   - Convenience-led Habit Loop formation (`habit_loop`)

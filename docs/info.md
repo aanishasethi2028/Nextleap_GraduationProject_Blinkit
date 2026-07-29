@@ -77,7 +77,7 @@ $$\text{Opportunity Score} = \text{Frequency Score} \times \text{Severity} \time
 
 ## 📐 5. Confidence Triangulation Calibration
 
-Confidence thresholds (HIGH, MEDIUM, LOW) are programmatically assigned by checking for support in the quantitative shopper survey ($n=42$):
+Confidence thresholds (HIGH, MEDIUM, LOW) are programmatically assigned by checking for support in the quantitative shopper survey ($n=50$):
 
 * **HIGH Confidence**: Backed by **LENS Reviews** and **Direct Survey Validation** (e.g. `habit_loop`, `price_value` themes).
 * **MEDIUM Confidence**: Backed by **LENS Reviews** with **Partial/Secondary Survey Support** (e.g. `ux_friction`, `trust_quality` themes).
