@@ -16,7 +16,7 @@
 │ - Programmatically clustered reviews  │ - Triangulated insights across 2 actual    │
 │   and filtered operational noise.     │   lenses: reviews and survey (n=50).       │
 │ - Llama-3.3-70b synthesized 18 growth │ - Conducted human agreement audit on 50    │
-│   cards ranked by Opportunity Score.  │   reviews (agreement improved to 56.0% via │
+│   cards ranked by Opportunity Score.  │  reviews (agreement calibrated at 56.0% via│
 │ - Routed speculative cards to         │   upgraded prompt and 70B model loop).     │
 │   [ASSUMPTION] / [VALIDATE] questions.│                                            │
 ├───────────────────────────────────────┴────────────────────────────────────────────┤

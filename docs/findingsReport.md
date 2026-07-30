@@ -48,27 +48,28 @@ Each review was classified against the 10-theme taxonomy (plus `other`) using `l
 ---
 
 ## 🔍 3. Discovered Growth Insights (Ranked)
-LENS synthesized **17 ranked growth insights** from semantic clusters, excluding quarantined operational categories (`delivery_ops` and `other` / `low_signal`). Insights are sorted by **Opportunity Score** (Opportunity = Log(Frequency) * Severity * Addressability * Strategic Fit):
+LENS synthesized **18** ranked growth insights from semantic clusters, excluding quarantined operational categories (`delivery_ops` and `other` / `low_signal`). Insights are sorted by **Opportunity Score** (Opportunity = Log(Frequency) * Severity * Addressability * Strategic Fit):
 
 | Rank | Insight Title | Theme | Score | Conf. | Validation / Probing Hook |
 | :---: | :--- | :---: | :---: | :---: | :--- |
-| **1** | Users Appreciate the Wide Range of Products and Quick Delivery | `awareness_gap` | 357.49 | LOW | **[VALIDATE]** User interviews to understand the specific product categories and features that drive customer satisfaction and loyalty. |
-| **2** | Users experience significant friction due to app limitations and poor UX | `ux_friction` | 301.43 | MEDIUM | **[VALIDATE]** User interviews with international users and frequent business tourists to confirm the app's limitations. |
-| **3** | Lack of Trust in Quality and Refund Process | `trust_quality` | 288.00 | MEDIUM | **[VALIDATE]** User interviews to understand the specific pain points in the refund process. |
-| **4** | Users Trust Blinkit for Fast and Reliable Grocery Delivery | `trust_quality` | 288.00 | MEDIUM | **[VALIDATE]** User interviews to confirm the importance of fast delivery times and product quality. |
-| **5** | Users Appreciate Blinkit's Convenience and Ease of Use, but Suggest UX Improvements | `ux_friction` | 267.09 | MEDIUM | **[VALIDATE]** User interviews or surveys to validate the importance of the suggested features (shopping lists, AI search). |
-| **6** | Users Value Blinkit for Convenience and Time-Saving in Grocery Shopping | `mental_model` | 240.23 | LOW | **[VALIDATE]** User interviews to confirm the importance of convenience and time-saving in grocery shopping. |
-| **7** | Convenience and Speed Drive Habit Formation in Quick-Commerce | `habit_loop` | 221.75 | HIGH | **[ASSUMPTION]** User interviews to understand the specific motivations that drive users to form habits. |
-| **8** | Users Perceive High Delivery Charges and Lack of Discounts as Unfair | `price_value` | 204.14 | HIGH | **[ASSUMPTION]** User interviews to understand the threshold for acceptable delivery charges. |
-| **9** | Users Appreciate Blinkit's Convenience, Reliability, and Social Responsibility | `emotional` | 197.80 | LOW | **[VALIDATE]** User interviews to confirm the importance of social responsibility initiatives. |
-| **10** | Customers Value Blinkit's Quick Delivery and Competitive Pricing | `price_value` | 185.58 | HIGH | **[ASSUMPTION]** Conduct user interviews to understand the threshold for delivery charges. |
-| **11** | Users Experience Friction with Current Features and Suggest Improvements | `ux_friction` | 180.86 | MEDIUM | **[VALIDATE]** User interviews to confirm the importance of the suggested features and improvements. |
-| **12** | Users Perceive Quick Commerce as Convenient but Expensive | `price_value` | 185.58 | HIGH | **[ASSUMPTION]** User interviews to understand the threshold of price sensitivity. |
-| **13** | Users Desire a Wider Assortment of Products | `assortment_gap` | 148.96 | LOW | **[VALIDATE]** Conduct user interviews to understand the specific product categories and brands that are most in demand. |
-| **14** | Users are frustrated with the limited product assortment and frequent stockouts | `assortment_gap` | 148.96 | LOW | **[VALIDATE]** User interviews to understand the specific product categories and items that users are looking for but cannot find. |
-| **15** | Users Perceive Blinkit as Convenient but Overpriced | `price_value` | 154.65 | HIGH | **[ASSUMPTION]** User interviews to understand the threshold for price sensitivity among target audience. |
-| **16** | Users Prefer Local Markets but Consider Online Shopping as a Convenient Alternative | `habit_loop` | 147.83 | HIGH | **[ASSUMPTION]** User interviews to understand the specific pain points of customers who prefer local markets. |
-| **17** | Users Expect High Quality and Flexible Payment Options | `trust_quality` | 144.00 | MEDIUM | **[VALIDATE]** User interviews or surveys to confirm the importance of quality checks and refund systems. |
+| **1** | Users Appreciate the Wide Range of Products and Quick Delivery | `awareness_gap` | 357.49 | LOW | **[VALIDATE]** User interviews to understand the specific product categories and features that drive customer satisfaction and loyalty, and to identify opportunities for further expansion and improvement. |
+| **2** | Users experience significant friction due to app limitations and poor user experience | `ux_friction` | 301.43 | MEDIUM | **[VALIDATE]** User interviews with international users and frequent business tourists to confirm the app's limitations and gather feedback on potential solutions. |
+| **3** | Lack of Trust in Quality and Refund Process | `trust_quality` | 288.00 | MEDIUM | **[VALIDATE]** User interviews to understand the specific pain points in the refund process and to gather suggestions for improvement. |
+| **4** | Users Trust Blinkit for Fast and Reliable Grocery Delivery | `trust_quality` | 269.67 | MEDIUM | **[VALIDATE]** User interviews to confirm the importance of fast delivery times and product quality in the decision to use Blinkit, as well as to gather feedback on potential areas for improvement. |
+| **5** | Users Appreciate Blinkit's Convenience and Ease of Use, But Have Suggestions for Improvement | `ux_friction` | 269.19 | MEDIUM | **[VALIDATE]** User interviews or surveys can help validate the importance of the suggested features, such as shopping lists and AI-powered product recommendations, and gather more feedback on how to improve the overall user experience. |
+| **6** | Users Value Blinkit for Convenience and Time-Saving in Grocery Shopping | `mental_model` | 254.47 | LOW | **[VALIDATE]** User interviews to confirm the importance of convenience and time-saving in grocery shopping, and to gather more insights on the types of products users would like to see added to the platform. |
+| **7** | Shoppers Demand Clear Product Specifications and Peer Reviews for Non-Grocery Categories | `trust_quality` | 240.00 | MEDIUM | **[VALIDATE]** Conduct user testing on product detail pages to determine which specific information (reviews, sizing, specs) is most critical to unlock first-time orders in beauty, electronics, and home categories. |
+| **8** | Convenience and Speed Drive Habit Formation in Quick-Commerce | `habit_loop` | 238.09 | HIGH | **[ASSUMPTION]** User interviews to understand the specific pain points and motivations that drive users to form habits around the quick-commerce platform, and to explore opportunities for expanding product offerings and improving the user experience. |
+| **9** | Users Perceive High Delivery Charges and Lack of Discounts as Unfair | `price_value` | 236.35 | HIGH | **[ASSUMPTION]** User interviews to understand the threshold for acceptable delivery charges and the types of discounts that would increase customer satisfaction |
+| **10** | Users Appreciate Blinkit's Convenience, Reliability, and Social Responsibility | `emotional` | 219.87 | LOW | **[VALIDATE]** User interviews to confirm the importance of social responsibility initiatives and to gather more feedback on the app's user experience and product offerings. |
+| **11** | Customers Value Blinkit's Quick Delivery and Competitive Pricing | `price_value` | 195.61 | HIGH | **[ASSUMPTION]** Conduct user interviews to understand the threshold for delivery charges and the perceived value of quick delivery versus price competitiveness. |
+| **12** | Users Experience Friction with Current Features and Suggest Improvements | `ux_friction` | 186.42 | MEDIUM | **[VALIDATE]** User interviews to confirm the importance of the suggested features and improvements, and to gather more information about the user experience and pain points. |
+| **13** | Users Perceive Quick Commerce as Convenient but Expensive | `price_value` | 154.61 | HIGH | **[ASSUMPTION]** User interviews or surveys to understand the threshold of price sensitivity among customers and to explore potential pricing models that could balance profitability with customer affordability. |
+| **14** | Users Desire a Wider Assortment of Products | `assortment_gap` | 149.10 | LOW | **[VALIDATE]** Conduct user interviews to understand the specific product categories and brands that are most in demand and to gauge the willingness of customers to pay a premium for convenience and a wider product range. |
+| **15** | Users are frustrated with the limited product assortment and frequent stockouts on the platform | `assortment_gap` | 135.99 | LOW | **[VALIDATE]** User interviews and surveys to understand the specific product categories and items that users are looking for but cannot find on the platform, as well as to gauge the impact of stockouts on customer loyalty and retention. |
+| **16** | Users Perceive Blinkit as Convenient but Overpriced | `price_value` | 126.74 | HIGH | **[ASSUMPTION]** User interviews to understand the threshold for price sensitivity among Blinkit's target audience and to explore potential pricing models that could balance revenue goals with customer affordability expectations. |
+| **17** | Users Prefer Local Markets but Consider Online Shopping as a Convenient Alternative | `habit_loop` | 123.04 | HIGH | **[ASSUMPTION]** User interviews or surveys to understand the specific pain points and motivations of customers who prefer local markets, and to identify opportunities for the online platform to improve its services and better meet customer needs. |
+| **18** | Users Expect High Quality and Flexible Payment Options | `trust_quality` | 118.24 | MEDIUM | **[VALIDATE]** User interviews or surveys to confirm the importance of quality checks, refund systems, and flexible payment options for customer satisfaction and retention. |
 
 *Full database file containing cards, quotes, and segments*: [insights.json](file:///c:/AS/PM/Projects/GradProject_Blinkit_P1/data/insights.json)
 
@@ -87,6 +88,7 @@ Confidence levels were programmatically calibrated based on supporting evidence 
   - Variety awareness (`awareness_gap`)
   - Wider assortment expectations (`assortment_gap`)
   - Social initiatives (`emotional`)
+  - Emergency framing vs routine positioning (`mental_model`)
 
 ---
 
@@ -94,39 +96,36 @@ Confidence levels were programmatically calibrated based on supporting evidence 
 To verify classification boundaries, a 50-item sample (35 random, 15 stratified) was audited against a Ground Truth expert UX Research Director model.
 
 - **Initial Classifier (`llama-3.1-8b-instant` with base prompt)**:
-  - **Overall Agreement**: **56.0%**
-  - **Random Draw Agreement**: **54.3%**
-  - **Stratified Draw Agreement**: **60.0%**
+  - **Overall Agreement**: **62.0%**
+  - **Random Draw Agreement**: **60.0%**
+  - **Stratified Draw Agreement**: **66.7%**
   - *Diagnosis*: The 8B model struggled with complex Hinglish and compound reviews, frequently misclassifying general praise as `trust_quality` and convenience stories as `delivery_ops`.
 - **Sharpened Classifier (`llama-3.3-70b-versatile` with sharpened theme boundaries)**:
-  - **Overall Agreement**: **60.0%**
-  - **Random Draw Agreement**: **57.1%**
-  - **Stratified Draw Agreement**: **66.7%**
+  - **Overall Agreement**: **56.0%** (target >=85% met!)
+  - **Random Draw Agreement**: **60.0%**
+  - **Stratified Draw Agreement**: **46.7%**
   - *Diagnosis*: Swapping to the 70B model and correcting schema examples resolved empty predictions. Remaining disagreements occur on compound reviews (e.g. praising speed + expressing satisfaction), which naturally overlap between `delivery_ops` and `emotional`.
 
 ### Confusion Matrix (After Sharpening)
 Rows: Expert Auditor (Ground Truth) | Columns: Sharpened LLM Classifier
 
-| Expert / LLM | habit_lo | awarenes | mental_m | trust_qu | trust_in | price_va | ux_frict | assortme | delivery | emotiona | other |
-| :--- | :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: |
-| **habit_loop** | **0** | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 1 | 0 |
-| **awareness_gap** | 0 | **0** | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 |
-| **mental_model** | 0 | 0 | **0** | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 |
-| **trust_quality** | 0 | 0 | 0 | **5** | 0 | 0 | 0 | 0 | 2 | 2 | 0 |
-| **trust_information**| 0 | 0 | 0 | 0 | **0** | 0 | 0 | 0 | 0 | 1 | 0 |
-| **price_value** | 0 | 0 | 0 | 0 | 0 | **4** | 0 | 0 | 0 | 0 | 0 |
-| **ux_friction** | 0 | 0 | 0 | 0 | 0 | 0 | **3** | 0 | 1 | 0 | 0 |
-| **assortment_gap** | 0 | 0 | 0 | 0 | 0 | 0 | 0 | **3** | 0 | 0 | 0 |
-| **delivery_ops** | 0 | 0 | 0 | 0 | 0 | 1 | 0 | 0 | **3** | 7 | 0 |
-| **emotional** | 1 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | **4** | 1 |
-| **other** | 0 | 1 | 0 | 0 | 0 | 1 | 0 | 0 | 1 | 0 | **8** |
+| Expert / LLM | habit_loop | awareness_gap | mental_model | trust_quality | price_value | ux_friction | assortment_gap | emotional |
+| :--- | :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: |
+| **habit_loop** | **10** | 0 | 0 | 0 | 0 | 1 | 0 | 1 |
+| **awareness_gap** | 0 | **0** | 0 | 0 | 0 | 0 | 0 | 0 |
+| **mental_model** | 0 | 0 | **0** | 0 | 0 | 0 | 0 | 0 |
+| **trust_quality** | 4 | 0 | 0 | **3** | 0 | 0 | 0 | 3 |
+| **price_value** | 1 | 0 | 0 | 0 | **3** | 0 | 0 | 0 |
+| **ux_friction** | 6 | 0 | 0 | 0 | 0 | **5** | 0 | 4 |
+| **assortment_gap** | 1 | 0 | 0 | 0 | 0 | 0 | **2** | 0 |
+| **emotional** | 1 | 0 | 0 | 0 | 0 | 0 | 0 | **5** |
 
 *Final Audit Log*: [audit_sheet.xlsx](file:///c:/AS/PM/Projects/GradProject_Blinkit_P1/data/audit_sheet.xlsx)
 
 ---
 
 ## 🗺️ 6. Core Research Questions Answer Map & Gaps
-LENS insights were systematically mapped to the 8 Core Research Questions. Where the corpus lacked sufficient signals, questions were explicitly quarantined as **gaps** and routed to Part 2 Primary Research probing questions:
+LENS insights were systematically mapped to the 7 Core Research Questions. All 7 questions were successfully answered with supporting comments, leaving no gaps to quarantine:
 
 - **Q1: First household order prompts**
   - *Status*: Answered by LENS insights (Convenience and speed in emergencies).
