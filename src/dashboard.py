@@ -730,7 +730,7 @@ with tab_insights:
     
     # Filters Form Card
     with st.form("filter_form"):
-        col_f1, col_f2, col_f3, col_f4, col_btn = st.columns([2.5, 2.5, 2.5, 2.5, 1.5])
+        col_f1, col_f2, col_f3, col_btn = st.columns([3.3, 3.3, 3.3, 1.8])
         with col_f1:
             theme_options = ["All Themes"] + [theme_labels.get(t, t.replace("_", " ").title()) for t in all_themes]
             selected_theme_label = st.selectbox("Select Theme", theme_options)
@@ -741,10 +741,6 @@ with tab_insights:
             
         with col_f3:
             selected_conf = st.selectbox("Select Confidence", ["All Confidences", "HIGH", "MEDIUM", "LOW"])
-            
-        with col_f4:
-            source_options = ["All Sources"] + [("Survey" if "Survey" in s else s) for s in all_sources]
-            selected_source_label = st.selectbox("Select Source", source_options)
             
         with col_btn:
             st.markdown('<div style="height: 12px;"></div>', unsafe_allow_html=True)
@@ -768,10 +764,6 @@ with tab_insights:
             continue
         if selected_rq != "All Research Questions" and selected_rq not in insight["answers_questions"]:
             continue
-        if selected_source_label != "All Sources":
-            actual_source = next((s for s in all_sources if "Survey" in s), selected_source_label) if selected_source_label == "Survey" else selected_source_label
-            if actual_source not in insight["triangulated_sources"]:
-                continue
         filtered_insights.append(insight)
 
     # Opportunity Cards Section

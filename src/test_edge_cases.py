@@ -13,9 +13,11 @@ mock_st = MagicMock()
 mock_st.columns.side_effect = lambda n: [MagicMock() for _ in range(n if isinstance(n, int) else len(n))]
 mock_st.tabs.side_effect = lambda titles: [MagicMock() for _ in range(len(titles))]
 sys.modules['streamlit'] = mock_st
+sys.modules['streamlit.components'] = MagicMock()
+sys.modules['streamlit.components.v1'] = MagicMock()
 
 # Import functions to test
-from sanitizeReviews import is_low_signal, get_source_type
+from data.sanitizeReviews import is_low_signal, get_source_type
 
 class TestLENSPipelineEdgeCases(unittest.TestCase):
     
