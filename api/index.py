@@ -5,23 +5,12 @@ import subprocess
 # Add project root to python path
 sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), "..")))
 
-def handler(request):
-    # Command to run Streamlit in headless serverless mode
-    cmd = [
-        "streamlit",
-        "run",
-        "src/dashboard.py",
-        "--server.headless",
-        "true",
-        "--server.port",
-        "8501"
-    ]
-    
-    # Run Streamlit as a subprocess
-    process = subprocess.Popen(cmd, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
-    
-    return {
-        "statusCode": 200,
-        "headers": {"Content-Type": "text/html"},
-        "body": "Streamlit server initialized. Access via proxy."
-    }
+from http.server import BaseHTTPRequestHandler
+
+class handler(BaseHTTPRequestHandler):
+    def do_GET(self):
+        self.send_response(200)
+        self.send_header('Content-type', 'text/html')
+        self.end_headers()
+        self.wfile.write("Streamlit server initialized. Accessing via serverless handler. Note: Serverless functions are stateless and do not support persistent WebSockets.".encode('utf-8'))
+        return
