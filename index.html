@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    <title>Blinkit LENS - Growth Intelligence AI Discovery Engine</title>
+    <!-- Favicon -->
+    <link rel="icon" type="image/x-icon" href="pics/logo.png" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@stlite/browser@0.85.1/build/stlite.css" />
+    <style>
+      /* Blinkit Palette: Yellow (#FFE000 / #F8CB46) & Green (#0C831F) */
+      body {
+        margin: 0;
+        padding: 0;
+        background-color: #fcfcfc;
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      }
+      #loading-overlay {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100vw;
+        height: 100vh;
+        background-color: #ffffff;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        z-index: 99999;
+        transition: opacity 0.5s ease-out;
+      }
+      .loader-container {
+        text-align: center;
+      }
+      .spinner {
+        width: 50px;
+        height: 50px;
+        border: 5px solid #f3f3f3;
+        border-top: 5px solid #0C831F; /* Blinkit Green */
+        border-radius: 50%;
+        animation: spin 1s linear infinite;
+        margin: 0 auto 20px auto;
+      }
+      @keyframes spin {
+        0% { transform: rotate(0deg); }
+        100% { transform: rotate(360deg); }
+      }
+      .loading-text {
+        font-size: 1.25rem;
+        font-weight: 700;
+        color: #1e293b;
+        margin-bottom: 8px;
+        letter-spacing: -0.5px;
+      }
+      .loading-subtext {
+        font-size: 0.9rem;
+        color: #64748b;
+        max-width: 340px;
+        line-height: 1.4;
+        margin: 0 auto;
+      }
+      /* Hide standard stlite overlay to use our premium custom loader */
+      .stlite-mountable-loading {
+        display: none !important;
+      }
+    </style>
+  </head>
+  <body>
+    <!-- Premium Blinkit Brand Loading Overlay -->
+    <div id="loading-overlay">
+      <div class="loader-container">
+        <div class="spinner"></div>
+        <div class="loading-text">Launching Blinkit LENS Engine...</div>
+        <div class="loading-subtext">Initializing Python WebAssembly environment directly in your browser. This takes a moment on first launch.</div>
+      </div>
+    </div>
+
+    <div id="root"></div>
+
+    <script type="module">
+      import { mount } from "https://cdn.jsdelivr.net/npm/@stlite/browser@0.85.1/build/stlite.js";
+      
+      mount({
+        requirements: ["pandas", "openpyxl", "pillow", "altair"],
+        entrypoint: "src/dashboard.py",
+        files: {
+          "src/dashboard.py": {
+            url: "src/dashboard.py"
+          },
+          "data/insights.json": {
+            url: "data/insights.json"
+          },
+          "data/validation_report.json": {
+            url: "data/validation_report.json"
+          },
+          "logo.png": {
+            url: "pics/logo.png"
+          },
+          "pics/3891925210d12c04458fbccc91565e7d.jpg": {
+            url: "pics/3891925210d12c04458fbccc91565e7d.jpg"
+          },
+          "pics/6d3ce75565eecc267968f6409f6d41de.jpg": {
+            url: "pics/6d3ce75565eecc267968f6409f6d41de.jpg"
+          },
+          "pics/e86509730b1c88aef8fbacb4b3643cb3.jpg": {
+            url: "pics/e86509730b1c88aef8fbacb4b3643cb3.jpg"
+          },
+          "pics/banner.jpg": {
+            url: "pics/banner.jpg"
+          },
+          "pics/category.jpg": {
+            url: "pics/category.jpg"
+          }
+        }
+      }, document.getElementById("root"));
+
+      // Poll until the streamlit iframe / elements are rendered, then fade out our overlay
+      const checkInterval = setInterval(() => {
+        const iframe = document.querySelector("#root iframe");
+        const mainBlock = document.querySelector(".stApp");
+        // stlite renders elements either inside root directly or via iframe
+        if (iframe || mainBlock || document.querySelector("#root").children.length > 1) {
+          const overlay = document.getElementById("loading-overlay");
+          if (overlay) {
+            overlay.style.opacity = 0;
+            setTimeout(() => {
+              overlay.remove();
+            }, 500);
+          }
+          clearInterval(checkInterval);
+        }
+      }, 500);
+    </script>
+  </body>
+</html>
