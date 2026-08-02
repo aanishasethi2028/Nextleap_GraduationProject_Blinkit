@@ -48,3 +48,6 @@ venv.bak/
 Thumbs.db
 EHthumbs.db
 Desktop.ini
+
+.vercel
+.env*
