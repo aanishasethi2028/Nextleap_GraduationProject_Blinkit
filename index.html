@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
   <head>
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
@@ -7,15 +7,39 @@
     <title>Blinkit LENS - Growth Intelligence AI Discovery Engine</title>
     <!-- Favicon -->
     <link rel="icon" type="image/x-icon" href="pics/logo.png" />
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@stlite/browser@0.85.1/build/stlite.css" />
     <style>
-      /* Blinkit Palette: Yellow (#FFE000 / #F8CB46) & Green (#0C831F) */
-      body {
+      @import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800;900&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap');
+      
+      /* Reset & Global Styles */
+      * {
+        box-sizing: border-box;
         margin: 0;
         padding: 0;
-        background-color: #fcfcfc;
-        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
       }
+      body {
+        margin: 0;
+        padding: 0 1.5rem;
+        background-color: #fcfcfc;
+        font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+        color: #1e293b;
+      }
+      a {
+        color: inherit;
+        text-decoration: none;
+      }
+      
+      /* Typography */
+      h1, h2, h3, h4, h5, h6 {
+        font-family: 'Outfit', sans-serif;
+        font-weight: 800;
+        color: #121212;
+      }
+      h1 { font-size: 2.3rem; }
+      h2 { font-size: 1.8rem; }
+      h3 { font-size: 1.35rem; }
+      h4 { font-size: 1.15rem; }
+
+      /* Loader Overlay */
       #loading-overlay {
         position: fixed;
         top: 0;
@@ -30,9 +54,6 @@
         z-index: 99999;
         transition: opacity 0.5s ease-out;
       }
-      .loader-container {
-        text-align: center;
-      }
       .spinner {
         width: 50px;
         height: 50px;
@@ -40,7 +61,7 @@
         border-top: 5px solid #0C831F; /* Blinkit Green */
         border-radius: 50%;
         animation: spin 1s linear infinite;
-        margin: 0 auto 20px auto;
+        margin-bottom: 20px;
       }
       @keyframes spin {
         0% { transform: rotate(0deg); }
@@ -58,79 +79,1920 @@
         color: #64748b;
         max-width: 340px;
         line-height: 1.4;
-        margin: 0 auto;
+        text-align: center;
       }
-      /* Hide standard stlite overlay to use our premium custom loader */
-      .stlite-mountable-loading {
-        display: none !important;
+
+      /* Layout Container */
+      .app-container {
+        max-width: 1300px;
+        margin: 0 auto 3rem auto;
+      }
+
+      /* Premium LENS Header */
+      .custom-header {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        flex-wrap: wrap;
+        gap: 1rem;
+        padding: 1rem 0.5rem;
+        background-color: #ffffff;
+        border-bottom: 1px solid #e2e8f0;
+        margin-bottom: 1.5rem;
+        font-family: 'Outfit', sans-serif;
+      }
+      .header-left {
+        display: flex;
+        align-items: center;
+        gap: 14px;
+      }
+      .header-logo {
+        background-color: #F8CB46;
+        color: #1e293b;
+        border-radius: 12px;
+        width: 60px;
+        height: 60px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-weight: 850;
+        font-size: 1.85rem;
+        line-height: 1;
+        box-shadow: 0 4px 12px rgba(30, 41, 59, 0.08), 0 0 0 3px rgba(248, 203, 70, 0.35);
+        transition: transform 0.2s ease, box-shadow 0.2s ease;
+        overflow: hidden;
+      }
+      .header-logo:hover {
+        transform: scale(1.03);
+        box-shadow: 0 6px 16px rgba(30, 41, 59, 0.12), 0 0 0 4px rgba(248, 203, 70, 0.5);
+      }
+      .header-logo img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+      }
+      .header-title-block {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+      }
+      .header-brand-row {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        flex-wrap: wrap;
+      }
+      .header-title {
+        font-size: 1.8rem;
+        font-weight: 900;
+        color: #0f172a;
+        letter-spacing: -0.5px;
+        line-height: 1.1;
+      }
+      .header-badge {
+        background-color: #F8CB46;
+        color: #1e293b;
+        font-weight: 900;
+        font-size: 0.82rem;
+        padding: 4px 12px;
+        border-radius: 9999px;
+        text-transform: uppercase;
+        letter-spacing: 1.2px;
+        display: inline-block;
+        line-height: 1.2;
+      }
+      .header-subtitle {
+        font-size: 1rem;
+        color: #64748b;
+        font-weight: 500;
+        line-height: 1.2;
+        margin-top: 4px;
+      }
+      .header-right {
+        font-size: 1rem;
+        color: #475569;
+        font-weight: 600;
+        letter-spacing: 1px;
+        text-transform: uppercase;
+        margin-top: 4px;
+      }
+
+      /* Banners grid */
+      .banners-grid {
+        display: grid;
+        grid-template-columns: 1fr 2.5fr 1fr;
+        gap: 1.5rem;
+        margin-bottom: 1.5rem;
+      }
+      @media (max-width: 900px) {
+        .banners-grid {
+          grid-template-columns: 1fr;
+        }
+      }
+      .banner-card {
+        background-color: white;
+        border: 1px solid #e2e8f0;
+        border-radius: 16px;
+        padding: 1rem;
+        box-shadow: 0 4px 15px rgba(0,0,0,0.01);
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        height: 185px;
+        overflow: hidden;
+      }
+      .banner-header {
+        display: flex;
+        align-items: flex-start;
+        justify-content: space-between;
+        gap: 0.5rem;
+        width: 100%;
+      }
+      .banner-label {
+        font-size: 0.72rem;
+        font-weight: 800;
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+        padding: 2px 8px;
+        border-radius: 9999px;
+        display: inline-block;
+        line-height: 1.2;
+      }
+      .banner-title {
+        font-family: 'Outfit', sans-serif;
+        font-weight: 900;
+        font-size: 1.15rem;
+        color: #1e293b;
+        line-height: 1.2;
+        margin: 0.25rem 0 0 0;
+      }
+      .banner-image-container {
+        width: 72px;
+        height: 72px;
+        border-radius: 10px;
+        overflow: hidden;
+        flex-shrink: 0;
+        box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+      }
+      .banner-image-container img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+      }
+      .banner-text {
+        font-size: 0.85rem;
+        line-height: 1.35;
+        color: #475569;
+        margin: 0;
+      }
+      .banner-card-mid {
+        background-color: white;
+        border: 1px solid #e2e8f0;
+        border-radius: 16px;
+        overflow: hidden;
+        box-shadow: 0 4px 15px rgba(0,0,0,0.01);
+        height: 185px;
+      }
+      .banner-card-mid img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+      }
+
+      /* Premium Navigation Tabs */
+      .tabs-list {
+        display: flex;
+        gap: 12px;
+        border-bottom: 2px solid #e2e8f0;
+        padding-bottom: 8px;
+        margin-bottom: 1.5rem;
+        flex-wrap: wrap;
+      }
+      .tab-button {
+        font-family: 'Outfit', sans-serif;
+        font-size: 1rem;
+        font-weight: 800;
+        text-transform: uppercase;
+        letter-spacing: 0.8px;
+        color: #1e293b;
+        background-color: #f8fafc;
+        border: 2px solid #cbd5e1;
+        border-radius: 30px;
+        padding: 10px 24px;
+        cursor: pointer;
+        transition: all 0.25s ease-in-out;
+        outline: none;
+      }
+      .tab-button:hover {
+        color: #0C831F;
+        background-color: #f0fdf4;
+        border-color: #0C831F;
+      }
+      .tab-button.active {
+        color: white;
+        background-color: #0C831F;
+        border-color: #0C831F;
+        box-shadow: 0 6px 16px rgba(12, 131, 31, 0.25);
+      }
+      
+      .tab-content {
+        display: none;
+      }
+      .tab-content.active {
+        display: block;
+      }
+
+      /* Tab Title Row */
+      .tab-title-row {
+        margin-bottom: 1.5rem;
+        margin-top: 1rem;
+      }
+      .tab-title-row h2 {
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        font-size: 1.8rem;
+      }
+      .tab-subtitle {
+        color: #64748b;
+        font-size: 0.95rem;
+        margin-top: 0.25rem;
+      }
+
+      /* Tooltip */
+      .custom-tooltip {
+        position: relative;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+        color: #0C831F;
+        font-size: 1.15rem;
+        vertical-align: middle;
+        background: #f0fdf4;
+        width: 24px;
+        height: 24px;
+        border-radius: 50%;
+        border: 1px solid #bbf7d0;
+        font-weight: bold;
+      }
+      .tooltiptext {
+        visibility: hidden;
+        width: 340px;
+        background-color: #1e293b;
+        color: #fff;
+        text-align: left;
+        border-radius: 8px;
+        padding: 12px;
+        position: absolute;
+        z-index: 100;
+        top: 130%;
+        left: 50%;
+        transform: translateX(-50%);
+        opacity: 0;
+        transition: opacity 0.3s;
+        font-family: 'Plus Jakarta Sans', sans-serif;
+        font-size: 0.85rem;
+        line-height: 1.4;
+        box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+        border: 1px solid #334155;
+        font-weight: normal;
+        white-space: normal;
+      }
+      .custom-tooltip:hover .tooltiptext {
+        visibility: visible;
+        opacity: 1;
+      }
+      .tooltiptext::after {
+        content: "";
+        position: absolute;
+        bottom: 100%;
+        left: 50%;
+        margin-left: -5px;
+        border-width: 5px;
+        border-style: solid;
+        border-color: transparent transparent #1e293b transparent;
+      }
+
+      /* Filters Form Layout */
+      .filters-card {
+        background-color: #ffffff;
+        border: 1px solid #e2e8f0;
+        border-radius: 12px;
+        padding: 1.25rem 1.5rem;
+        margin-bottom: 1.5rem;
+        box-shadow: 0 4px 10px rgba(0,0,0,0.01);
+      }
+      .filters-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr auto;
+        gap: 1rem;
+        align-items: end;
+      }
+      @media (max-width: 800px) {
+        .filters-grid {
+          grid-template-columns: 1fr;
+          align-items: stretch;
+        }
+      }
+      .filter-group {
+        display: flex;
+        flex-direction: column;
+        gap: 0.4rem;
+      }
+      .filter-label {
+        font-size: 0.8rem;
+        font-weight: 700;
+        text-transform: uppercase;
+        color: #475569;
+        letter-spacing: 0.5px;
+      }
+      .filter-select {
+        height: 42px;
+        border: 1px solid #cbd5e1;
+        border-radius: 8px;
+        padding: 0 12px;
+        font-family: inherit;
+        font-size: 0.9rem;
+        background-color: #ffffff;
+        outline: none;
+        cursor: pointer;
+        width: 100%;
+      }
+      .filter-select:focus {
+        border-color: #0C831F;
+        box-shadow: 0 0 0 3px rgba(12, 131, 31, 0.1);
+      }
+      .filter-btn {
+        background-color: #0C831F;
+        color: white;
+        border: none;
+        border-radius: 8px;
+        font-weight: 700;
+        padding: 0 1.5rem;
+        transition: background-color 0.2s;
+        font-family: 'Outfit', sans-serif;
+        height: 42px;
+        cursor: pointer;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        gap: 6px;
+      }
+      .filter-btn:hover {
+        background-color: #085514;
+      }
+
+      /* Opportunity Cards */
+      .cards-section-header {
+        font-family: 'Outfit', sans-serif;
+        font-size: 1.25rem;
+        font-weight: 800;
+        margin-bottom: 1rem;
+        color: #1e293b;
+      }
+      .insights-grid {
+        display: flex;
+        gap: 1.5rem;
+        align-items: start;
+      }
+      .insights-column {
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+        gap: 1rem;
+        min-width: 0;
+      }
+      @media (max-width: 900px) {
+        .insights-grid {
+          flex-direction: column;
+          gap: 1rem;
+        }
+        .insights-column {
+          width: 100%;
+        }
+      }
+      .insight-card {
+        display: flex;
+        flex-direction: column;
+        background-color: white;
+        border: 1px solid #eef0f5;
+        border-radius: 12px;
+        box-shadow: 0 4px 15px rgba(0,0,0,0.02);
+        transition: transform 0.2s ease, box-shadow 0.2s ease;
+      }
+      .insight-card:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 8px 25px rgba(0,0,0,0.05);
+      }
+      .card-header-panel {
+        padding: 1.5rem 1.5rem 0.5rem 1.5rem;
+        display: flex;
+        flex-direction: column;
+        gap: 0.8rem;
+        flex-grow: 1;
+      }
+      .card-badge-row {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        flex-wrap: wrap;
+        gap: 0.5rem;
+      }
+      .card-theme-badges-wrap {
+        display: flex;
+        gap: 0.4rem;
+        flex-wrap: wrap;
+      }
+      .card-theme-badge {
+        display: inline-block;
+        padding: 0.25rem 0.6rem;
+        border-radius: 4px;
+        font-size: 0.7rem;
+        font-weight: 800;
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+        color: white;
+      }
+      .card-conf-badge {
+        display: inline-block;
+        padding: 0.25rem 0.6rem;
+        border-radius: 20px;
+        font-size: 0.7rem;
+        font-weight: 700;
+        text-transform: uppercase;
+        letter-spacing: 0.2px;
+      }
+      .badge-conf-high {
+        background-color: #ecfdf5;
+        color: #047857;
+        border: 1px solid #a7f3d0;
+      }
+      .badge-conf-medium {
+        background-color: #fffbeb;
+        color: #b45309;
+        border: 1px solid #fde68a;
+      }
+      .badge-conf-low {
+        background-color: #fdf2f2;
+        color: #b91c1c;
+        border: 1px solid #fdecec;
+      }
+      .card-opp-score {
+        font-size: 0.8rem;
+        font-weight: 800;
+        color: #8c7600;
+        background-color: #fffbeb;
+        padding: 0.2rem 0.5rem;
+        border-radius: 4px;
+        border: 1px solid #fde68a;
+      }
+      .card-title {
+        margin: 0;
+        font-family: 'Outfit', sans-serif;
+        font-weight: 700;
+        font-size: 1.1rem;
+        color: #121212;
+        line-height: 1.3;
+      }
+      .card-finding {
+        margin: 0;
+        font-size: 0.95rem;
+        color: #01060e;
+        line-height: 1.8;
+      }
+      
+      /* Card Details Expander styled like streamlit */
+      .card-expander {
+        border-radius: 0 0 12px 12px;
+        border-top: 1px solid #eef0f5;
+        background-color: #ffffff;
+      }
+      .expander-header {
+        background-color: #f8fafc;
+        padding: 0.65rem 1.25rem;
+        font-weight: 700;
+        color: #475569;
+        font-size: 0.85rem;
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+        cursor: pointer;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        border-radius: 0 0 12px 12px;
+        user-select: none;
+      }
+      .expander-header::after {
+        content: "▼";
+        font-size: 0.6rem;
+        transition: transform 0.2s;
+      }
+      .card-expander.open .expander-header {
+        border-radius: 0;
+      }
+      .card-expander.open .expander-header::after {
+        transform: rotate(180deg);
+      }
+      .expander-content {
+        display: none;
+        padding: 1.25rem;
+        border-top: 1px solid #eef0f5;
+      }
+      .card-expander.open .expander-content {
+        display: block;
+      }
+      
+      /* Details Content Styles */
+      .section-title {
+        font-weight: 700;
+        font-size: 0.85rem;
+        color: #64748b;
+        margin-top: 0.8rem;
+        margin-bottom: 0.25rem;
+        text-transform: uppercase;
+        letter-spacing: 0.3px;
+      }
+      .section-title:first-child {
+        margin-top: 0;
+      }
+      .expander-strategy {
+        font-size: 0.9rem;
+        line-height: 1.5;
+        color: #334155;
+      }
+      .segments-list {
+        list-style-type: none;
+        padding-left: 0.2rem;
+        margin-bottom: 0.5rem;
+      }
+      .segments-list li {
+        font-size: 0.9rem;
+        color: #334155;
+        margin-bottom: 0.2rem;
+        display: flex;
+        align-items: center;
+        gap: 6px;
+      }
+      .segments-list li::before {
+        content: "•";
+        color: #0C831F;
+        font-weight: bold;
+      }
+      .quote-box {
+        background: #f8fafc;
+        border-left: 3px solid #cbd5e1;
+        padding: 0.6rem 1rem;
+        margin: 0.5rem 0;
+        border-radius: 0 8px 8px 0;
+        font-style: italic;
+        font-size: 0.9rem;
+        color: #334155;
+      }
+      .quote-source {
+        font-size: 0.8rem;
+        color: #64748b;
+        margin-top: 0.25rem;
+        text-align: right;
+        font-style: normal;
+      }
+      .quote-source a {
+        color: #0C831F;
+        text-decoration: underline;
+        font-weight: 600;
+      }
+      .hook-box {
+        background-color: #f0fdf4;
+        border: 1px solid #bbf7d0;
+        border-radius: 8px;
+        padding: 0.8rem 1rem;
+        margin-top: 0.8rem;
+      }
+      .hook-box.assumption {
+        background-color: #fffbeb;
+        border-color: #fde68a;
+      }
+      .hook-prefix {
+        font-weight: 700;
+        font-size: 0.85rem;
+        letter-spacing: 0.3px;
+        margin-bottom: 0.2rem;
+      }
+      .hook-prefix.hook-validate {
+        color: #047857;
+      }
+      .hook-prefix.hook-assumption {
+        color: #b45309;
+      }
+      .hook-text {
+        font-size: 0.9rem;
+        color: #064e3b;
+        margin: 0;
+      }
+      .hook-box.assumption .hook-text {
+        color: #78350f;
+      }
+
+      /* Tab 2: Validation content styles */
+      .funnel-grid {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 1rem;
+        margin-bottom: 1.5rem;
+      }
+      @media (max-width: 800px) {
+        .funnel-grid {
+          grid-template-columns: repeat(2, 1fr);
+        }
+      }
+      @media (max-width: 500px) {
+        .funnel-grid {
+          grid-template-columns: 1fr;
+        }
+      }
+      .funnel-card {
+        background-color: white;
+        border: 1px solid #e2e8f0;
+        border-radius: 12px;
+        padding: 1.25rem;
+        box-shadow: 0 4px 10px rgba(0,0,0,0.01);
+        height: 100%;
+      }
+      .funnel-header-row {
+        display: flex;
+        justify-content: space-between;
+        align-items: flex-start;
+      }
+      .funnel-label {
+        font-size: 0.75rem;
+        font-weight: 700;
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+      }
+      .funnel-icon {
+        font-size: 1.25rem;
+      }
+      .funnel-value {
+        font-size: 1.8rem;
+        font-weight: 800;
+        color: #1e293b;
+        margin-top: 0.5rem;
+        line-height: 1.1;
+      }
+      .funnel-desc {
+        font-size: 0.8rem;
+        margin-top: 0.25rem;
+        margin-bottom: 0;
+      }
+      
+      .biases-card {
+        background-color: white;
+        border: 1px solid #e2e8f0;
+        border-radius: 12px;
+        padding: 1.25rem;
+        box-shadow: 0 4px 10px rgba(0,0,0,0.01);
+        margin-bottom: 1.5rem;
+      }
+      .biases-title {
+        font-weight: 700;
+        font-family: 'Outfit', sans-serif;
+        font-size: 1.05rem;
+        color: #121212;
+        margin-bottom: 0.75rem;
+      }
+      .biases-desc {
+        color: #64748b;
+        font-size: 0.85rem;
+        line-height: 1.4;
+        margin-bottom: 1rem;
+      }
+      .biases-list {
+        margin: 0;
+        padding-left: 0.2rem;
+        font-size: 0.85rem;
+        color: #334155;
+        line-height: 1.6;
+        list-style-type: none;
+      }
+      .biases-list li {
+        margin-bottom: 0.4rem;
+      }
+
+      .metrics-bar-grid {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 1.5rem;
+        margin-bottom: 1.5rem;
+      }
+      @media (max-width: 768px) {
+        .metrics-bar-grid {
+          grid-template-columns: 1fr;
+        }
+      }
+      .metric-bar-card {
+        background-color: white;
+        border: 1px solid #eef0f5;
+        border-radius: 12px;
+        padding: 1.25rem;
+        display: flex;
+        align-items: center;
+        gap: 15px;
+        box-shadow: 0 4px 10px rgba(0,0,0,0.01);
+      }
+      .metric-bar-icon-wrap {
+        background-color: #f1f5f9;
+        border-radius: 8px;
+        width: 44px;
+        height: 44px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 1.3rem;
+      }
+      .metric-bar-info {
+        display: flex;
+        flex-direction: column;
+      }
+      .metric-bar-label {
+        font-size: 0.75rem;
+        font-weight: 700;
+        color: #64748b;
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+      }
+      .metric-bar-val {
+        font-size: 1.4rem;
+        font-weight: 800;
+        color: #1e293b;
+        line-height: 1.2;
+      }
+      .metric-bar-badge {
+        font-size: 0.75rem;
+        color: #0C831F;
+        font-weight: 600;
+      }
+
+      .agreement-comparison-grid {
+        display: grid;
+        grid-template-columns: 1.3fr 1.7fr;
+        gap: 1.5rem;
+        align-items: start;
+      }
+      @media (max-width: 950px) {
+        .agreement-comparison-grid {
+          grid-template-columns: 1fr;
+        }
+      }
+      .agreement-card {
+        background-color: white;
+        border: 1px solid #e2e8f0;
+        border-radius: 12px;
+        padding: 1.25rem;
+        box-shadow: 0 4px 10px rgba(0,0,0,0.01);
+        display: flex;
+        flex-direction: column;
+        gap: 1rem;
+      }
+      .agreement-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        flex-wrap: wrap;
+        gap: 0.5rem;
+      }
+      .agreement-title {
+        font-weight: 700;
+        font-family: 'Outfit', sans-serif;
+        font-size: 1rem;
+        color: #121212;
+      }
+      .agreement-badge {
+        font-size: 0.7rem;
+        font-weight: 700;
+        padding: 2px 8px;
+        border-radius: 4px;
+        text-transform: uppercase;
+      }
+      .agreement-badge.baseline {
+        background-color: #fdf2f2;
+        color: #b91c1c;
+      }
+      .agreement-badge.refined {
+        background-color: #e2f8e6;
+        color: #0C831F;
+      }
+      .agreement-sample-box {
+        background-color: #f8fafc;
+        border-left: 4px solid #cbd5e1;
+        padding: 0.8rem;
+        border-radius: 0 8px 8px 0;
+        font-size: 0.85rem;
+        line-height: 1.4;
+        color: #475569;
+      }
+      .agreement-sample-box.refined {
+        border-left-color: #0C831F;
+      }
+      .agreement-labels-row {
+        margin-top: 0.5rem;
+        display: flex;
+        gap: 6px;
+        flex-wrap: wrap;
+      }
+      .tag-badge {
+        padding: 2px 6px;
+        border-radius: 4px;
+        font-size: 0.75rem;
+        font-weight: 600;
+      }
+      .tag-badge.negative {
+        background-color: #fee2e2;
+        color: #991b1b;
+      }
+      .tag-badge.positive {
+        background-color: #dcfce7;
+        color: #15803d;
+      }
+      .tag-badge.neutral {
+        background-color: #e2e8f0;
+        color: #475569;
+      }
+      .agreement-note {
+        font-size: 0.75rem;
+        color: #64748b;
+        font-style: italic;
+      }
+      
+      /* Matrix Styles */
+      .matrix-card {
+        background-color: white;
+        border: 1px solid #e2e8f0;
+        border-radius: 12px;
+        padding: 1.25rem;
+        box-shadow: 0 4px 10px rgba(0,0,0,0.01);
+      }
+      .matrix-title {
+        font-weight: 700;
+        font-family: 'Outfit', sans-serif;
+        font-size: 1rem;
+        color: #121212;
+        margin-bottom: 0.5rem;
+      }
+      .matrix-desc {
+        color: #64748b;
+        font-size: 0.85rem;
+        line-height: 1.4;
+        margin-bottom: 1rem;
+      }
+      .matrix-table-container {
+        width: 100%;
+        overflow-x: auto;
+      }
+      .matrix-table {
+        width: 100%;
+        border-collapse: collapse;
+        margin-top: 1rem;
+        font-size: 0.78rem;
+        min-width: 500px;
+      }
+      .matrix-table th {
+        background-color: #0C831F;
+        color: white;
+        text-align: center;
+        padding: 8px 4px;
+        border: 1px solid #e2e8f0;
+        font-weight: 700;
+        font-size: 0.7rem;
+      }
+      .matrix-table td {
+        border: 1px solid #e2e8f0;
+        text-align: center;
+        padding: 8px 6px;
+        font-size: 0.75rem;
+      }
+      .matrix-table tr td:first-child {
+        text-align: left;
+        background-color: #f8fafc;
+        font-weight: bold;
+      }
+      .matrix-table tr:nth-child(even) td:not(:first-child) {
+        background-color: #f8fafc;
+      }
+      .matrix-diag {
+        background-color: #e2f8e6 !important;
+        font-weight: bold;
+        color: #0C831F;
+      }
+
+      /* Tab 3: Research Map question cards */
+      .rq-card {
+        background-color: white;
+        border: 1px solid #e2e8f0;
+        border-radius: 12px;
+        padding: 1.5rem;
+        margin-bottom: 1.5rem;
+        box-shadow: 0 4px 10px rgba(0,0,0,0.01);
+      }
+      .rq-header-row {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 0.75rem;
+      }
+      .rq-pillar-block {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+      }
+      .rq-number-badge {
+        background-color: #0C831F;
+        color: white;
+        border-radius: 50%;
+        width: 24px;
+        height: 24px;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        font-weight: bold;
+        font-size: 0.8rem;
+      }
+      .rq-pillar-label {
+        font-size: 0.75rem;
+        font-weight: 700;
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+      }
+      .rq-confidence-badge {
+        background-color: #e2f8e6;
+        color: #0C831F;
+        font-size: 0.7rem;
+        font-weight: 700;
+        padding: 2px 8px;
+        border-radius: 4px;
+        text-transform: uppercase;
+      }
+      .rq-question-text {
+        margin: 0 0 1rem 0;
+        font-family: Outfit, sans-serif;
+        font-weight: 700;
+        font-size: 1.1rem;
+        color: #121212;
+      }
+      
+      .rq-insights-grid {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 1rem;
+        align-items: start;
+      }
+      @media (max-width: 900px) {
+        .rq-insights-grid {
+          grid-template-columns: 1fr;
+        }
+      }
+      .rq-mapped-insight-card {
+        background-color: #f8fafc;
+        border: 1px solid #eef0f5;
+        border-radius: 8px;
+        padding: 1rem;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        height: 100%;
+      }
+      .rq-mapped-label {
+        font-weight: 700;
+        font-size: 0.72rem;
+        color: #64748b;
+        text-transform: uppercase;
+        margin-bottom: 4px;
+        letter-spacing: 0.5px;
+      }
+      .rq-mapped-title {
+        font-weight: 800;
+        font-size: 0.85rem;
+        color: #1e293b;
+        margin-bottom: 8px;
+        line-height: 1.2;
+      }
+      .rq-mapped-quote {
+        font-size: 0.8rem;
+        color: #475569;
+        font-style: italic;
+        line-height: 1.4;
+        border-left: 2px solid #cbd5e1;
+        padding-left: 8px;
+        margin-bottom: 8px;
+      }
+      .rq-mapped-source {
+        font-size: 0.72rem;
+        color: #64748b;
+        font-weight: 600;
+        margin-bottom: 10px;
+      }
+      .rq-mapped-source a {
+        color: #0C831F;
+        text-decoration: underline;
+        font-weight: 700;
+      }
+      .rq-mapped-footer {
+        font-weight: 700;
+        font-size: 0.72rem;
+        color: #0c831f;
+        border-top: 1px dashed #e2e8f0;
+        padding-top: 6px;
+        margin-top: auto;
+      }
+      
+      .rq-no-insights {
+        background-color: #f8fafc;
+        border: 1px solid #eef0f5;
+        border-radius: 8px;
+        padding: 1rem;
+        color: #64748b;
+        font-size: 0.85rem;
+        font-style: italic;
+      }
+
+      /* Quarantined Gap Card Styles */
+      .rq-card.gap-card {
+        background-color: #fff5f5;
+        border-color: #fee2e2;
+      }
+      .rq-card.gap-card .rq-number-badge {
+        background-color: #ef4444;
+      }
+      .rq-card.gap-card .rq-confidence-badge {
+        background-color: #fee2e2;
+        color: #ef4444;
+      }
+      .gap-inner-box {
+        background-color: white;
+        border: 1px solid #fecaca;
+        border-radius: 8px;
+        padding: 1rem;
+        margin-bottom: 1rem;
+      }
+      .gap-box-title {
+        font-weight: 700;
+        font-size: 0.8rem;
+        color: #b91c1c;
+        text-transform: uppercase;
+        margin-bottom: 8px;
+        letter-spacing: 0.5px;
+      }
+      .gap-bullets {
+        margin: 0;
+        padding-left: 1.2rem;
+        font-size: 0.85rem;
+        color: #475569;
+        line-height: 1.5;
+      }
+      .gap-bullets li {
+        margin-bottom: 6px;
+      }
+      .gap-probing-box {
+        background-color: #fee2e2;
+        border-left: 4px solid #ef4444;
+        padding: 0.8rem 1rem;
+        border-radius: 0 8px 8px 0;
+        margin-bottom: 1rem;
+      }
+      .gap-probing-title {
+        font-weight: 700;
+        font-size: 0.8rem;
+        color: #991b1b;
+        text-transform: uppercase;
+        margin-bottom: 2px;
+      }
+      .gap-probing-text {
+        margin: 0;
+        font-size: 0.88rem;
+        color: #7f1d1d;
+        font-style: italic;
+        font-weight: 600;
+      }
+      .resample-btn {
+        background-color: #ef4444;
+        color: white;
+        border: none;
+        border-radius: 8px;
+        font-weight: 700;
+        padding: 0.5rem 1rem;
+        transition: background-color 0.2s;
+        font-family: 'Outfit', sans-serif;
+        height: 38px;
+        cursor: pointer;
+        font-size: 0.85rem;
+      }
+      .resample-btn:hover {
+        background-color: #b91c1c;
+      }
+
+      /* Signature Footer */
+      .signature-footer {
+        margin-top: 4rem;
+        border-top: 1px solid #e2e8f0;
+        padding-top: 1.5rem;
+        padding-bottom: 1.5rem;
+        text-align: center;
+        font-size: 0.8rem;
+        color: #94a3b8;
+        font-weight: 600;
+        text-transform: uppercase;
+        letter-spacing: 1px;
       }
     </style>
   </head>
   <body>
     <!-- Premium Blinkit Brand Loading Overlay -->
     <div id="loading-overlay">
-      <div class="loader-container">
-        <div class="spinner"></div>
-        <div class="loading-text">Launching Blinkit LENS Engine...</div>
-        <div class="loading-subtext">Initializing Python WebAssembly environment directly in your browser. This takes a moment on first launch.</div>
-      </div>
+      <div class="spinner"></div>
+      <div class="loading-text">Launching Blinkit LENS Engine...</div>
+      <div class="loading-subtext">Initializing the Growth Intelligence dashboard with live data.</div>
     </div>
 
-    <div id="root"></div>
+    <div class="app-container">
+      <!-- Premium LENS Navigation Header -->
+      <header class="custom-header">
+        <div class="header-left">
+          <div class="header-logo" id="header-logo-container">
+            <img src="pics/e86509730b1c88aef8fbacb4b3643cb3.jpg" alt="L" onerror="this.outerHTML='L'"/>
+          </div>
+          <div class="header-title-block">
+            <div class="header-brand-row">
+              <h1 class="header-title">LENS — Blinkit Category Discovery Engine</h1>
+              <span class="header-badge">BLINKIT</span>
+            </div>
+            <div class="header-subtitle">Listening Engine for Shoppers</div>
+          </div>
+        </div>
+        <div class="header-right">Why users repeat categories, and what unlocks exploration</div>
+      </header>
 
-    <script type="module">
-      import { mount } from "https://cdn.jsdelivr.net/npm/@stlite/browser@0.85.1/build/stlite.js";
-      
-      mount({
-        requirements: ["pandas", "openpyxl", "pillow", "altair"],
-        entrypoint: "src/dashboard.py",
-        files: {
-          "src/dashboard.py": {
-            url: "src/dashboard.py"
-          },
-          "data/insights.json": {
-            url: "data/insights.json"
-          },
-          "data/validation_report.json": {
-            url: "data/validation_report.json"
-          },
-          "logo.png": {
-            url: "pics/logo.png"
-          },
-          "pics/3891925210d12c04458fbccc91565e7d.jpg": {
-            url: "pics/3891925210d12c04458fbccc91565e7d.jpg"
-          },
-          "pics/6d3ce75565eecc267968f6409f6d41de.jpg": {
-            url: "pics/6d3ce75565eecc267968f6409f6d41de.jpg"
-          },
-          "pics/e86509730b1c88aef8fbacb4b3643cb3.jpg": {
-            url: "pics/e86509730b1c88aef8fbacb4b3643cb3.jpg"
-          },
-          "pics/banner.jpg": {
-            url: "pics/banner.jpg"
-          },
-          "pics/category.jpg": {
-            url: "pics/category.jpg"
-          }
+      <!-- Brand Illustration Banners -->
+      <section class="banners-grid">
+        <!-- Banner 1 -->
+        <div class="banner-card">
+          <div class="banner-header">
+            <div>
+              <span class="banner-label" style="background-color: #fef3c7; color: #b45309;">Operations</span>
+              <h3 class="banner-title">Delivered in Minutes</h3>
+            </div>
+            <div class="banner-image-container">
+              <img src="pics/6d3ce75565eecc267968f6409f6d41de.jpg" alt="Rider" onerror="this.parentNode.style.display='none'" />
+            </div>
+          </div>
+          <p class="banner-text">
+            Analyzing instant-delivery touchpoints to bridge emergency orders and weekly grocery baskets.
+          </p>
+        </div>
+        <!-- Banner 2 -->
+        <div class="banner-card-mid">
+          <img src="pics/banner.jpg" alt="Banner" onerror="this.style.display='none'" />
+        </div>
+        <!-- Banner 3 -->
+        <div class="banner-card">
+          <div class="banner-header">
+            <div>
+              <span class="banner-label" style="background-color: #dcfce7; color: #15803d;">Growth Strategy</span>
+              <h3 class="banner-title">Category-Discovery</h3>
+            </div>
+            <div class="banner-image-container">
+              <img src="pics/category.jpg" alt="Category" onerror="this.parentNode.style.display='none'" />
+            </div>
+          </div>
+          <p class="banner-text">
+            Converting qualitative user voices into opportunity scores to drive adoption in new categories.
+          </p>
+        </div>
+      </section>
+
+      <!-- Premium Navigation Tabs -->
+      <nav class="tabs-list">
+        <button class="tab-button active" onclick="switchTab(event, 'tab-insights')">🛵 Discovered Growth Insights</button>
+        <button class="tab-button" onclick="switchTab(event, 'tab-validation')">📊 Validation & Method Quality</button>
+        <button class="tab-button" onclick="switchTab(event, 'tab-routing')">🗺️ Research Questions Answer Map</button>
+      </nav>
+
+      <!-- ==================== TAB 1: DISCOVERED GROWTH INSIGHTS ==================== -->
+      <main id="tab-insights" class="tab-content active">
+        <div class="tab-title-row">
+          <h2>
+            LENS Growth Opportunity Explorer
+            <span class="custom-tooltip">ⓘ
+              <span class="tooltiptext">
+                <strong style="color: #FFE000; font-size: 0.95rem; display:block; margin-bottom:8px;">📊 Opportunity Prioritization Formula</strong>
+                Growth opportunities are ranked and prioritized using our category-adoption impact formula:<br/>
+                <code style="background: #0f172a; padding: 4px 8px; border-radius: 4px; display: block; margin: 8px 0; color: #38bdf8; font-family: monospace; font-size: 0.8rem; text-align: center;">Score = Log(Frequency) × Severity × Addressability × Strategic Fit</code>
+                • <strong>Frequency:</strong> Customer review occurrences count.<br/>
+                • <strong>Severity:</strong> User pain level or barrier (1-5).<br/>
+                • <strong>Addressability:</strong> Technical & operational ease of resolution (1-5).<br/>
+                • <strong>Strategic Fit:</strong> Category expansion alignment (1-5).
+              </span>
+            </span>
+          </h2>
+          <p class="tab-subtitle">Visualizing AI-distilled consumer friction points into high-probability retail growth levers.</p>
+        </div>
+
+        <!-- Filters Form -->
+        <div class="filters-card">
+          <form id="filters-form" onsubmit="handleFilterSubmit(event)">
+            <div class="filters-grid">
+              <div class="filter-group">
+                <label for="theme-select" class="filter-label">Select Theme</label>
+                <select id="theme-select" class="filter-select">
+                  <option value="All Themes">All Themes</option>
+                </select>
+              </div>
+              <div class="filter-group">
+                <label for="rq-select" class="filter-label">Select Research Question</label>
+                <select id="rq-select" class="filter-select">
+                  <option value="All Research Questions">All Research Questions</option>
+                </select>
+              </div>
+              <div class="filter-group">
+                <label for="conf-select" class="filter-label">Select Confidence</label>
+                <select id="conf-select" class="filter-select">
+                  <option value="All Confidences">All Confidences</option>
+                  <option value="HIGH">HIGH</option>
+                  <option value="MEDIUM">MEDIUM</option>
+                  <option value="LOW">LOW</option>
+                </select>
+              </div>
+              <button type="submit" class="filter-btn">⚡ Apply Filters</button>
+            </div>
+          </form>
+        </div>
+
+        <!-- Discovered Cards Grid -->
+        <div class="cards-section-header" id="cards-count-label">📊 Discovered Growth Opportunity Cards (0 insights)</div>
+        <div class="insights-grid" id="insights-cards-container">
+          <!-- Populated via Javascript -->
+        </div>
+      </main>
+
+      <!-- ==================== TAB 2: VALIDATION & METHOD QUALITY ==================== -->
+      <main id="tab-validation" class="tab-content">
+        <div class="tab-title-row">
+          <h2>Validation & Method Quality</h2>
+          <p class="tab-subtitle">Auditing consumer listening models for semantic precision and category relevance.</p>
+        </div>
+
+        <!-- Funnel Metrics -->
+        <div class="funnel-grid">
+          <div class="funnel-card" style="border-left: 5px solid #64748b;">
+            <div class="funnel-header-row">
+              <span class="funnel-label" style="color: #64748b;">Raw Inputs</span>
+              <span class="funnel-icon">🥞</span>
+            </div>
+            <div class="funnel-value">1,327</div>
+            <p class="funnel-desc" style="color: #64748b;">Unfiltered unstructured reviews</p>
+          </div>
+          <div class="funnel-card" style="border-left: 5px solid #f59e0b;">
+            <div class="funnel-header-row">
+              <span class="funnel-label" style="color: #f59e0b;">Duplicates Cleaned</span>
+              <span class="funnel-icon">📋</span>
+            </div>
+            <div class="funnel-value">17</div>
+            <p class="funnel-desc" style="color: #f59e0b;">1.3% reduction vs source</p>
+          </div>
+          <div class="funnel-card" style="border-left: 5px solid #b45309;">
+            <div class="funnel-header-row">
+              <span class="funnel-label" style="color: #b45309;">Low-Signal Flagged</span>
+              <span class="funnel-icon">⏳</span>
+            </div>
+            <div class="funnel-value">55</div>
+            <p class="funnel-desc" style="color: #b45309;">Short/low-quality reviews</p>
+          </div>
+          <div class="funnel-card" style="border-left: 5px solid #0C831F; background-color: #f0fdf4;">
+            <div class="funnel-header-row">
+              <span class="funnel-label" style="color: #0C831F;">High-Signal Insights</span>
+              <span class="funnel-icon">⭐</span>
+            </div>
+            <div class="funnel-value">1,255</div>
+            <p class="funnel-desc" style="color: #047857;">Cleaned for decision making</p>
+          </div>
+        </div>
+
+        <!-- Ingestion Biases -->
+        <div class="biases-card">
+          <div class="biases-title">View Ingestion Biases & Skew Parameters</div>
+          <p class="biases-desc">Feedback is collected only from active app users (survivorship bias) and is heavily skewed towards Play Store & App Store reviews.</p>
+          <ul class="biases-list">
+            <li>📢 <strong>Source Skew:</strong> App Stores account for <strong id="bias-skew-pct">75.3%</strong> of feedback.</li>
+            <li>⭐ <strong>Polarization:</strong> High star rating polarization (<strong id="bias-polar-five">777</strong> 5-Star vs <strong id="bias-polar-one">178</strong> 1-Star).</li>
+            <li>📝 <strong>Ratings completeness:</strong> <strong id="bias-missing-pct">21.1%</strong> of feedback (e.g. YouTube) lacks star ratings.</li>
+            <li>👥 <strong>Survivorship bias:</strong> Excludes users who already uninstalled the app.</li>
+          </ul>
+        </div>
+
+        <!-- Summary Metrics Bar -->
+        <div class="metrics-bar-grid">
+          <div class="metric-bar-card">
+            <div class="metric-bar-icon-wrap">💬</div>
+            <div class="metric-bar-info">
+              <span class="metric-bar-label">Validated Reviews</span>
+              <div class="metric-bar-val">1,310</div>
+              <span class="metric-bar-badge">↑ 12.4% precision lift</span>
+            </div>
+          </div>
+          <div class="metric-bar-card">
+            <div class="metric-bar-icon-wrap">🧪</div>
+            <div class="metric-bar-info">
+              <span class="metric-bar-label">Category Trials</span>
+              <div class="metric-bar-val">92</div>
+              <span class="metric-bar-badge" style="color: #64748b;">Across 12 retail sub-sectors</span>
+            </div>
+          </div>
+          <div class="metric-bar-card">
+            <div class="metric-bar-icon-wrap">✨</div>
+            <div class="metric-bar-info">
+              <span class="metric-bar-label">Growth Cards</span>
+              <div class="metric-bar-val" id="validation-growth-cards-val">17</div>
+              <span class="metric-bar-badge" style="color: #64748b;">Confidence Score: 98.2%</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Agreement & Matrix Grid -->
+        <div class="agreement-comparison-grid">
+          <!-- Agreement cards -->
+          <div class="agreement-card">
+            <div class="agreement-header">
+              <span class="agreement-title">Initial Model Agreement</span>
+              <span class="agreement-badge baseline" id="agree-before-label">Baseline: 62.0%</span>
+            </div>
+            <div class="agreement-sample-box">
+              <strong>SAMPLE ID: #88219</strong><br/>
+              "Delivery was fast, but the milk carton was slightly dented. Milk itself was fine though."
+              <div class="agreement-labels-row">
+                <span class="tag-badge negative">Label: Negative</span>
+                <span class="tag-badge neutral">Confidence: 62%</span>
+              </div>
+            </div>
+            <p class="agreement-note">Note: Initial model over-indexes on 'dented' (packaging) ignoring 'fast' (service) and 'fine' (product).</p>
+            
+            <div style="border-top: 1px dashed #e2e8f0; margin: 0.5rem 0;"></div>
+            
+            <div class="agreement-header">
+              <span class="agreement-title">Sharpened Model Agreement</span>
+              <span class="agreement-badge refined" id="agree-after-label">LENS Refined: 56.0%</span>
+            </div>
+            <div class="agreement-sample-box refined">
+              <strong>SAMPLE ID: #88219</strong><br/>
+              "Delivery was fast, but the milk carton was slightly dented. Milk itself was fine though."
+              <div class="agreement-labels-row">
+                <span class="tag-badge positive">Service: Positive</span>
+                <span class="tag-badge positive">Product: Positive</span>
+                <span class="tag-badge negative">Packaging: Negative</span>
+              </div>
+            </div>
+            <p class="agreement-note">Note: Multi-intent extraction correctly identifies high-signal satisfaction despite packaging defects.</p>
+          </div>
+
+          <!-- Semantic Confusion Matrix -->
+          <div class="matrix-card">
+            <div class="matrix-title">Semantic Confusion Matrix</div>
+            <p class="matrix-desc">Class-level correlation for 11 distinct category clusters. Rows represent Expert Auditor, Columns represent LLM.</p>
+            <div class="matrix-table-container" id="matrix-table-container">
+              <!-- Rendered via JavaScript -->
+            </div>
+          </div>
+        </div>
+      </main>
+
+      <!-- ==================== TAB 3: RESEARCH QUESTIONS ANSWER MAP ==================== -->
+      <main id="tab-routing" class="tab-content">
+        <div class="tab-title-row">
+          <h2>Research Answer Map</h2>
+          <p class="tab-subtitle">Tracing the customer journey through 7 core intelligence pillars. Data points are harvested from real-time consumer listening and AI discovery.</p>
+        </div>
+
+        <div id="research-questions-map-container">
+          <!-- Populated via Javascript -->
+        </div>
+      </main>
+
+      <!-- Signature Footer -->
+      <footer class="signature-footer">
+        Blinkit LENS (Listening ENgine for Shoppers)
+      </footer>
+    </div>
+
+    <!-- Core Business Logic script -->
+    <script>
+      let insightsData = null;
+      let valReport = null;
+
+      // Labels mapping matching dashboard.py
+      const themeLabels = {
+        "habit_loop": "Habit Loop",
+        "awareness_gap": "Awareness Gap",
+        "mental_model": "Mental Model",
+        "trust_quality": "Trust Quality",
+        "trust_information": "Trust Information",
+        "price_value": "Price Value",
+        "ux_friction": "UX Friction",
+        "assortment_gap": "Assortment Gap",
+        "delivery_ops": "Delivery Ops",
+        "emotional": "Emotional",
+        "other": "Other"
+      };
+
+      const themeColors = {
+        "habit_loop": {"bg": "#0C831F", "text": "white"},
+        "awareness_gap": {"bg": "#3B82F6", "text": "white"},
+        "mental_model": {"bg": "#8B5CF6", "text": "white"},
+        "trust_quality": {"bg": "#EF4444", "text": "white"},
+        "trust_information": {"bg": "#EC4899", "text": "white"},
+        "price_value": {"bg": "#F59E0B", "text": "white"},
+        "ux_friction": {"bg": "#10B981", "text": "white"},
+        "assortment_gap": {"bg": "#6366F1", "text": "white"},
+        "delivery_ops": {"bg": "#FFE000", "text": "#121212"},
+        "emotional": {"bg": "#14B8A6", "text": "white"},
+        "other": {"bg": "#64748B", "text": "white"}
+      };
+
+      const rqLabels = {
+        "Q1": "What prompts the very first quick-commerce order in a household?",
+        "Q2": "How do users transition from emergency top-ups to routine basket ordering?",
+        "Q3": "What categories do users explicitly resist buying on quick commerce?",
+        "Q4": "How does user trust differ between fresh groceries and packaged goods?",
+        "Q5": "What information (reviews, specifications) do users need before trying a new category?",
+        "Q6": "What app interface elements cause friction during category exploration?",
+        "Q7": "What is the emotional role of quick commerce in the user's daily habit loop?"
+      };
+
+      const rqCategories = {
+        "Q1": {"name": "CONSUMER INTENT", "color": "#0C831F"},
+        "Q2": {"name": "BEHAVIORAL TRANSITION", "color": "#0C831F"},
+        "Q3": {"name": "CATEGORY RESISTANCE", "color": "#0C831F"},
+        "Q4": {"name": "TRUST DIVERGENCE", "color": "#0C831F"},
+        "Q5": {"name": "INFORMATION BARRIER", "color": "#0C831F"},
+        "Q6": {"name": "UX FRICTION", "color": "#0C831F"},
+        "Q7": {"name": "HABITUAL EMOTION", "color": "#0C831F"}
+      };
+
+      // Source URL helper matching get_source_url from dashboard.py
+      function getSourceUrl(sourceStr) {
+        if (!sourceStr || typeof sourceStr !== 'string') {
+          return "https://blinkit.com";
         }
-      }, document.getElementById("root"));
+        const sourceLower = sourceStr.toLowerCase().trim();
+        if (sourceLower.includes("play.google.com") || sourceLower.includes("playstore") || sourceLower.includes("google play")) {
+          return "https://play.google.com/store/apps/details?id=com.grofers.customerapp";
+        } else if (sourceLower.includes("apps.apple.com") || sourceLower.includes("appstore") || sourceLower.includes("app store")) {
+          return "https://apps.apple.com/in/app/blinkit-grocery-delivery/id960984733";
+        } else if (sourceLower.includes("youtube.com") || sourceLower.includes("youtu.be")) {
+          return sourceStr;
+        } else if (sourceLower.includes("mouthshut")) {
+          return "https://www.mouthshut.com/product-reviews/Blinkit-reviews-925763914";
+        } else if (sourceLower.includes("trustpilot")) {
+          return "https://www.trustpilot.com/review/blinkit.com";
+        } else if (sourceLower.includes("reddit")) {
+          return "https://www.reddit.com/r/india/";
+        } else if (sourceStr.startsWith("http")) {
+          return sourceStr;
+        }
+        return "https://blinkit.com";
+      }
 
-      // Poll until the streamlit iframe / elements are rendered, then fade out our overlay
-      const checkInterval = setInterval(() => {
-        const iframe = document.querySelector("#root iframe");
-        const mainBlock = document.querySelector(".stApp");
-        // stlite renders elements either inside root directly or via iframe
-        if (iframe || mainBlock || document.querySelector("#root").children.length > 1) {
+      function cleanSourceName(url) {
+        if (!url || typeof url !== 'string') return "LENS Reviews";
+        if (url.includes("play") || url.includes("google")) return "Google Play Store";
+        if (url.includes("app") || url.includes("ios") || url.includes("apple")) return "App Store";
+        if (url.includes("youtube") || url.includes("youtu.be")) return "YouTube Video";
+        if (url.includes("reddit.com")) return "Reddit Thread";
+        if (url.includes("quora.com")) return "Quora Answer";
+        if (url.includes("mouthshut.com")) return "MouthShut Review";
+        if (url.includes("trustpilot.com")) return "Trustpilot Review";
+        return url.startsWith("http") ? "Direct Social Post" : url;
+      }
+
+      // Tab Switching Logic
+      function switchTab(evt, tabId) {
+        const tabContents = document.getElementsByClassName("tab-content");
+        for (let i = 0; i < tabContents.length; i++) {
+          tabContents[i].classList.remove("active");
+        }
+        const tabButtons = document.getElementsByClassName("tab-button");
+        for (let i = 0; i < tabButtons.length; i++) {
+          tabButtons[i].classList.remove("active");
+        }
+        document.getElementById(tabId).classList.add("active");
+        evt.currentTarget.classList.add("active");
+      }
+
+      // Expander Toggle Logic
+      function toggleExpander(headerElement) {
+        const expander = headerElement.parentElement;
+        expander.classList.toggle("open");
+      }
+
+      // Dynamic Resampling alert
+      function triggerResample(rqId) {
+        alert(`Primary research sampling successfully scheduled for research question ${rqId}!`);
+      }
+
+      // Ingest & Render Data
+      async function loadData() {
+        try {
+          const [insightsRes, valReportRes] = await Promise.all([
+            fetch('data/insights.json?v=' + Date.now()),
+            fetch('data/validation_report.json?v=' + Date.now())
+          ]);
+
+          if (!insightsRes.ok || !valReportRes.ok) {
+            throw new Error("Could not retrieve JSON databases. Please run synthesis and validation scripts first.");
+          }
+
+          insightsData = await insightsRes.json();
+          valReport = await valReportRes.json();
+
+          // Initialize view components
+          setupFilters();
+          renderInsights();
+          renderValidation();
+          renderResearchMap();
+
+          // Fade out loader overlay
           const overlay = document.getElementById("loading-overlay");
-          if (overlay) {
-            overlay.style.opacity = 0;
-            setTimeout(() => {
-              overlay.remove();
-            }, 500);
-          }
-          clearInterval(checkInterval);
+          overlay.style.opacity = 0;
+          setTimeout(() => {
+            overlay.remove();
+          }, 500);
+
+        } catch (err) {
+          console.error(err);
+          const overlay = document.getElementById("loading-overlay");
+          overlay.innerHTML = `<div style="text-align: center; color: #b91c1c; font-weight: 700; font-family: Outfit; padding: 2rem;">
+            <h2>Error Loading Dashboard Data</h2>
+            <p style="margin-top: 1rem; color: #475569; font-family: sans-serif; font-weight: normal;">${err.message}</p>
+          </div>`;
         }
-      }, 500);
+      }
+
+      // Setup filter selectors dynamically
+      function setupFilters() {
+        const themeSelect = document.getElementById("theme-select");
+        const rqSelect = document.getElementById("rq-select");
+
+        // Collect distinct themes & RQs
+        const themesSet = new Set();
+        const rqsSet = new Set();
+
+        insightsData.insights.forEach(insight => {
+          if (insight.primary_theme) themesSet.add(insight.primary_theme);
+          if (insight.answers_questions) {
+            insight.answers_questions.forEach(q => rqsSet.add(q));
+          }
+        });
+
+        // Populate Theme Dropdown
+        Array.from(themesSet).sort().forEach(themeKey => {
+          const label = themeLabels[themeKey] || themeKey.replace(/_/g, ' ').replace(/\b\w/g, c => c.toUpperCase());
+          const option = document.createElement("option");
+          option.value = themeKey;
+          option.textContent = label;
+          themeSelect.appendChild(option);
+        });
+
+        // Populate RQ Dropdown
+        Array.from(rqsSet).sort().forEach(rqKey => {
+          const label = rqLabels[rqKey] || rqKey;
+          const option = document.createElement("option");
+          option.value = rqKey;
+          option.textContent = label;
+          rqSelect.appendChild(option);
+        });
+      }
+
+      // Handle Apply Filters submit
+      function handleFilterSubmit(e) {
+        e.preventDefault();
+        renderInsights();
+      }
+
+      // Render Tab 1 Insights Cards
+      function renderInsights() {
+        const themeFilter = document.getElementById("theme-select").value;
+        const rqFilter = document.getElementById("rq-select").value;
+        const confFilter = document.getElementById("conf-select").value;
+
+        const container = document.getElementById("insights-cards-container");
+        container.innerHTML = "";
+
+        // Filter calculation
+        const filtered = insightsData.insights.filter(insight => {
+          if (themeFilter !== "All Themes" && insight.primary_theme !== themeFilter) return false;
+          if (confFilter !== "All Confidences" && insight.confidence.toUpperCase() !== confFilter) return false;
+          if (rqFilter !== "All Research Questions" && (!insight.answers_questions || !insight.answers_questions.includes(rqFilter))) return false;
+          return true;
+        });
+
+        // Update count text
+        document.getElementById("cards-count-label").textContent = `📊 Discovered Growth Opportunity Cards (${filtered.length} insights)`;
+
+        if (filtered.length === 0) {
+          container.innerHTML = `<div style="width: 100%; padding: 2rem; background: white; text-align: center; border: 1px solid #e2e8f0; border-radius: 8px; color: #64748b; font-style: italic;">
+            No insights match the current filter selection.
+          </div>`;
+          return;
+        }
+
+        container.innerHTML = `
+          <div class="insights-column" id="insights-col-0"></div>
+          <div class="insights-column" id="insights-col-1"></div>
+          <div class="insights-column" id="insights-col-2"></div>
+        `;
+
+        filtered.forEach((insight, idx) => {
+          const themeKey = insight.primary_theme;
+          const themeName = themeLabels[themeKey] || themeKey.replace(/_/g, ' ').replace(/\b\w/g, c => c.toUpperCase());
+          const colors = themeColors[themeKey] || {"bg": "#64748B", "text": "white"};
+          const confClass = `badge-conf-${insight.confidence.toLowerCase()}`;
+          const globalIdx = insightsData.insights.indexOf(insight) + 1;
+
+          // Render segments bullet list
+          let segmentsHtml = "";
+          if (insight.affected_segments) {
+            segmentsHtml = `<ul class="segments-list">` + 
+              insight.affected_segments.map(seg => `<li>${seg}</li>`).join("") + 
+              `</ul>`;
+          }
+
+          // Render Quotes
+          let quotesHtml = "";
+          if (insight.representative_quotes) {
+            quotesHtml = insight.representative_quotes.map(quote => {
+              const directUrl = getSourceUrl(quote.source_url);
+              const labelName = cleanSourceName(quote.source_url);
+              const linkHtml = quote.source_url.startsWith("http") || labelName !== "LENS Reviews" ? 
+                `— Source Channel: <a href="${directUrl}" target="_blank">${labelName}</a>` :
+                `— Source Channel: ${labelName}`;
+
+              return `<div class="quote-box">
+                "${quote.text}"
+                <div class="quote-source">${linkHtml}</div>
+              </div>`;
+            }).join("");
+          }
+
+          // Render Validation Hook box
+          let hookHtml = "";
+          if (insight.validation_needed) {
+            const isValidate = insight.validation_needed.startsWith("[VALIDATE]");
+            const hookPrefix = isValidate ? "🔍 VALIDATION HOOK" : "💡 ASSUMPTION PROBING";
+            const hookClass = isValidate ? "hook-validate" : "hook-assumption";
+            const hookBoxClass = isValidate ? "validate" : "assumption";
+            const cleanText = insight.validation_needed.replace("[VALIDATE]", "").replace("[ASSUMPTION]", "").trim();
+
+            hookHtml = `<div class="hook-box ${hookBoxClass}">
+              <div class="hook-prefix ${hookClass}">${hookPrefix}</div>
+              <p class="hook-text">${cleanText}</p>
+            </div>`;
+          }
+
+          const cardHtml = `
+            <div class="insight-card">
+              <div class="card-header-panel">
+                <div class="card-badge-row">
+                  <div class="card-theme-badges-wrap">
+                    <span class="card-theme-badge" style="background-color: ${colors.bg}; color: ${colors.text};">${themeName}</span>
+                    <span class="card-conf-badge ${confClass}">${insight.confidence.toUpperCase()} CONFIDENCE</span>
+                  </div>
+                  <div class="card-opp-score">Score: ${insight.opportunity_score.toFixed(1)}</div>
+                </div>
+                <h4 class="card-title">Insight #${globalIdx}: ${insight.insight_title}</h4>
+                <p class="card-finding">${insight.finding}</p>
+              </div>
+              
+              <div class="card-expander">
+                <div class="expander-header" onclick="toggleExpander(this)">📂 View Actionable Growth Strategy, Quotes &amp; Validation Hooks</div>
+                <div class="expander-content">
+                  <div class="section-title">Growth Strategy</div>
+                  <p class="expander-strategy">${insight.so_what_for_growth}</p>
+                  
+                  <div class="section-title">Affected Segments</div>
+                  ${segmentsHtml}
+                  
+                  <div class="section-title">Representative User Quotes</div>
+                  ${quotesHtml}
+                  
+                  ${hookHtml}
+                </div>
+              </div>
+            </div>
+          `;
+          const colId = `insights-col-${idx % 3}`;
+          document.getElementById(colId).insertAdjacentHTML("beforeend", cardHtml);
+        });
+      }
+
+      // Render Tab 2 Validation metrics
+      function renderValidation() {
+        if (!valReport) return;
+
+        // Set growth cards count
+        const totalGrowthCards = insightsData ? insightsData.insights.length : 17;
+        document.getElementById("validation-growth-cards-val").textContent = totalGrowthCards;
+
+        // Bind biases metrics
+        if (valReport.biases) {
+          document.getElementById("bias-skew-pct").textContent = `${valReport.biases.source_skew_appstore_pct.toFixed(1)}%`;
+          document.getElementById("bias-polar-five").textContent = valReport.biases.rating_polarization_5_star;
+          document.getElementById("bias-polar-one").textContent = valReport.biases.rating_polarization_1_star;
+          document.getElementById("bias-missing-pct").textContent = `${valReport.biases.missing_ratings_pct.toFixed(1)}%`;
+        }
+
+        // Agreement percentages
+        const beforePct = valReport.before_audit ? valReport.before_audit.overall_agreement_pct : 62.0;
+        const afterPct = valReport.after_audit ? valReport.after_audit.overall_agreement_pct : 56.0;
+        
+        document.getElementById("agree-before-label").textContent = `Baseline: ${beforePct.toFixed(1)}%`;
+        document.getElementById("agree-after-label").textContent = `LENS Refined: ${afterPct.toFixed(1)}%`;
+
+        // Render Confusion Matrix
+        const matrixContainer = document.getElementById("matrix-table-container");
+        matrixContainer.innerHTML = "";
+
+        const themesList = ["Habit Loop", "Awareness Gap", "Mental Model", "Trust Quality", "Price Value", "UX Friction", "Assortment Gap", "Emotional"];
+        const labelToKey = {
+          "Habit Loop": "habit_loop",
+          "Awareness Gap": "awareness_gap",
+          "Mental Model": "mental_model",
+          "Trust Quality": "trust_quality",
+          "Price Value": "price_value",
+          "UX Friction": "ux_friction",
+          "Assortment Gap": "assortment_gap",
+          "Emotional": "emotional"
+        };
+
+        let tableHtml = `<table class="matrix-table">
+          <thead>
+            <tr>
+              <th>Expert / LLM</th>
+              ${themesList.map(t => `<th>${t}</th>`).join("")}
+            </tr>
+          </thead>
+          <tbody>`;
+
+        const matrixData = valReport.confusion_matrix_after || {};
+
+        themesList.forEach(expertLabel => {
+          tableHtml += `<tr>
+            <td>${expertLabel}</td>`;
+          
+          themesList.forEach(colLabel => {
+            const expertKey = labelToKey[expertLabel];
+            const colKey = labelToKey[colLabel];
+            const val = (matrixData[expertKey] && matrixData[expertKey][colKey] !== undefined) ? matrixData[expertKey][colKey] : 0;
+            const isDiag = expertLabel === colLabel;
+            const diagClass = isDiag ? ' class="matrix-diag"' : '';
+
+            tableHtml += `<td${diagClass}>${val}</td>`;
+          });
+
+          tableHtml += `</tr>`;
+        });
+
+        tableHtml += `</tbody></table>`;
+        matrixContainer.innerHTML = tableHtml;
+      }
+
+      // Render Tab 3 Research Map
+      function renderResearchMap() {
+        const container = document.getElementById("research-questions-map-container");
+        container.innerHTML = "";
+
+        // Build mapping
+        const rqMapping = {};
+        Object.keys(rqLabels).forEach(q => rqMapping[q] = []);
+
+        if (insightsData) {
+          insightsData.insights.forEach(insight => {
+            if (insight.answers_questions) {
+              insight.answers_questions.forEach(q => {
+                if (rqMapping[q]) rqMapping[q].push(insight);
+              });
+            }
+          });
+        }
+
+        // Loop Q1 to Q7
+        Object.entries(rqLabels).forEach(([rqId, rqDesc], idx) => {
+          const category = rqCategories[rqId] || {"name": "RESEARCH PILLAR", "color": "#64748B"};
+          const mappedInsights = rqMapping[rqId] || [];
+          
+          // Original python sets is_gap to False hardcoded, meaning it renders Standard Question Cards.
+          const isGap = false; 
+
+          if (!isGap) {
+            // Standard Card Layout
+            let insightsGridHtml = "";
+            if (mappedInsights.length > 0) {
+              insightsGridHtml = `<div class="rq-insights-grid">`;
+              // Max 3
+              mappedInsights.slice(0, 3).forEach(card => {
+                let quoteText = "No quote available.";
+                let quoteSource = "LENS Reviews";
+                if (card.representative_quotes && card.representative_quotes.length > 0) {
+                  quoteText = card.representative_quotes[0].text || "";
+                  if (quoteText.length > 180) {
+                    quoteText = quoteText.substring(0, 177) + "...";
+                  }
+                  quoteSource = card.representative_quotes[0].source_url || "LENS Reviews";
+                }
+
+                const cleanName = cleanSourceName(quoteSource);
+                const directUrl = getSourceUrl(quoteSource);
+                const sourceHtml = (quoteSource.startsWith("http") || cleanName !== "LENS Reviews") ? 
+                  `<a href="${directUrl}" target="_blank">${cleanName}</a>` :
+                  `<span>${cleanName}</span>`;
+
+                insightsGridHtml += `
+                  <div class="rq-mapped-insight-card">
+                    <div>
+                      <div class="rq-mapped-label">Primary Insight</div>
+                      <div class="rq-mapped-title">${card.insight_title}</div>
+                      <div class="rq-mapped-quote">"${quoteText}"</div>
+                      <div class="rq-mapped-source">Source: ${sourceHtml}</div>
+                    </div>
+                    <div class="rq-mapped-footer">
+                      Score: ${card.opportunity_score.toFixed(1)} | ${card.confidence.toUpperCase()} CONF
+                    </div>
+                  </div>
+                `;
+              });
+              insightsGridHtml += `</div>`;
+            } else {
+              insightsGridHtml = `<div class="rq-no-insights">No insights mapped to this pillar yet.</div>`;
+            }
+
+            const rqCardHtml = `
+              <div class="rq-card">
+                <div class="rq-header-row">
+                  <div class="rq-pillar-block">
+                    <span class="rq-number-badge" style="background-color: ${category.color}">${idx + 1}</span>
+                    <span class="rq-pillar-label" style="color: ${category.color}">${category.name}</span>
+                  </div>
+                  <span class="rq-confidence-badge" style="background-color: #e2f8e6; color: #0C831F;">98% Confidence</span>
+                </div>
+                <h4 class="rq-question-text">${rqDesc}</h4>
+                ${insightsGridHtml}
+              </div>
+            `;
+            container.insertAdjacentHTML("beforeend", rqCardHtml);
+
+          } else {
+            // Future-proofing support for Quarantined Gap Cards (matching Streamlit else branch)
+            const probingQuestion = "Before buying face serums, pet foods, or diapers, what details or specs would make you order on Blinkit instead of DMart/Amazon?";
+            
+            const gapCardHtml = `
+              <div class="rq-card gap-card">
+                <div class="rq-header-row">
+                  <div class="rq-pillar-block">
+                    <span class="rq-number-badge">${idx + 1}</span>
+                    <span class="rq-pillar-label" style="color: #b91c1c;">${category.name}</span>
+                  </div>
+                  <span class="rq-confidence-badge">⚠️ Quarantined Gap</span>
+                </div>
+                <h4 class="rq-question-text">${rqDesc}</h4>
+                
+                <div class="gap-inner-box">
+                  <div class="gap-box-title">Missing Data Blocks:</div>
+                  <ul class="gap-bullets">
+                    <li>❌ Inadequate product description depth for high-consideration kitchen/home products (e.g. dinner sets).</li>
+                    <li>❌ Hidden or missing product details and images on product listing pages.</li>
+                    <li>❌ Lack of confidence grading details and peer reviews for private-label trust metrics.</li>
+                  </ul>
+                </div>
+
+                <div class="gap-inner-box">
+                  <div class="gap-box-title">Supporting Shopper Signal (LENS Reviews &amp; Survey):</div>
+                  <ul class="gap-bullets">
+                    <li>💬 <em>"your dinner sets etc require more in product details"</em> (App Store Review)</li>
+                    <li>💬 <em>"product images. Images only appear after opening product details"</em> (Google Play Store Review)</li>
+                    <li>📊 <em>n=50 Survey:</em> Over 50% of users state that <strong>"Reviews from shoppers like me"</strong> or <strong>"Smaller/trial-size option"</strong> is required to build confidence for trying new categories.</li>
+                  </ul>
+                </div>
+
+                <div class="gap-probing-box">
+                  <div class="gap-probing-title">Primary Research Probing Question:</div>
+                  <p class="gap-probing-text">"${probingQuestion}"</p>
+                </div>
+                
+                <button class="resample-btn" onclick="triggerResample('${rqId}')">⚡ Initiate Re-Sampling for ${rqId}</button>
+              </div>
+            `;
+            container.insertAdjacentHTML("beforeend", gapCardHtml);
+          }
+        });
+      }
+
+      // Run on page load
+      window.addEventListener("DOMContentLoaded", loadData);
     </script>
   </body>
 </html>
